@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
+    <form id="form-settings-update" action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <x-slot name="header">
@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <button type="submit"
+                    <button type="submit" form="form-settings-update"
                         class="inline-flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs font-extrabold rounded-xl shadow-sm hover:shadow transition cursor-pointer">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                         Simpan Pengaturan
@@ -137,6 +137,16 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Bottom Action Card -->
+                        <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-xs flex items-center justify-between gap-4">
+                            <span class="text-xs font-semibold text-slate-500">Pastikan data identitas & media asset sudah sesuai.</span>
+                            <button type="submit" form="form-settings-update"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold rounded-xl shadow-md transition shrink-0 cursor-pointer">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Simpan Perubahan
+                            </button>
                         </div>
 
                     </div>
