@@ -226,53 +226,53 @@
                 <table class="w-full text-xs text-left text-slate-600">
                     <thead class="text-[11px] text-slate-500 uppercase bg-slate-100/70 border-b border-slate-200 font-bold tracking-wider">
                         <tr>
-                            <th class="px-6 py-3.5 text-center">Peringkat</th>
-                            <th class="px-6 py-3.5">No. KK</th>
-                            <th class="px-6 py-3.5">NIK</th>
-                            <th class="px-6 py-3.5">Nama Warga</th>
-                            <th class="px-6 py-3.5">RT</th>
-                            <th class="px-6 py-3.5 text-center">Skor Akhir</th>
-                            <th class="px-6 py-3.5 text-center">Status Rekomendasi</th>
+                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Peringkat</th>
+                            <th class="px-4 py-3.5 whitespace-nowrap">No. KK</th>
+                            <th class="px-4 py-3.5 whitespace-nowrap">NIK</th>
+                            <th class="px-4 py-3.5 whitespace-nowrap">Nama Warga</th>
+                            <th class="px-4 py-3.5 whitespace-nowrap">RT</th>
+                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Skor Akhir</th>
+                            <th class="px-6 py-3.5 text-center whitespace-nowrap">Status Rekomendasi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 bg-white">
                         @forelse($topRanking as $item)
                             <tr class="hover:bg-indigo-50/30 transition">
-                                <td class="px-6 py-4 text-center font-bold">
+                                <td class="px-4 py-3.5 text-center font-bold whitespace-nowrap">
                                     @if($item['rank'] == 1)
-                                        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-black text-xs border border-amber-300 shadow-xs">
+                                        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 font-black text-xs border border-amber-300 shadow-xs whitespace-nowrap">
                                             <svg class="w-3.5 h-3.5 me-1 text-amber-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Rank #1
                                         </span>
                                     @elseif($item['rank'] == 2)
-                                        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-slate-200 text-slate-800 font-black text-xs border border-slate-300 shadow-xs">
+                                        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-slate-200 text-slate-800 font-black text-xs border border-slate-300 shadow-xs whitespace-nowrap">
                                             <svg class="w-3.5 h-3.5 me-1 text-slate-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Rank #2
                                         </span>
                                     @elseif($item['rank'] == 3)
-                                        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-orange-100 text-orange-900 font-black text-xs border border-orange-300 shadow-xs">
+                                        <span class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-orange-100 text-orange-900 font-black text-xs border border-orange-300 shadow-xs whitespace-nowrap">
                                             <svg class="w-3.5 h-3.5 me-1 text-orange-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg> Rank #3
                                         </span>
                                     @else
                                         <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white font-black text-xs">#{{ $item['rank'] }}</span>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4 font-mono font-bold text-indigo-600">{{ $item['no_kk'] ?? '-' }}</td>
-                                <td class="px-6 py-4 font-mono font-bold text-slate-800">{{ $item['nik'] ?? '-' }}</td>
-                                <td class="px-6 py-4 font-extrabold text-slate-900">{{ $item['nama_warga'] ?? '-' }}</td>
-                                <td class="px-6 py-4 text-slate-600">{{ $item['rt_rw'] ?? '-' }}</td>
-                                <td class="px-6 py-4 text-center font-black text-indigo-600 text-sm">
+                                <td class="px-4 py-3.5 font-mono font-bold text-indigo-600 whitespace-nowrap">{{ $item['no_kk'] ?? '-' }}</td>
+                                <td class="px-4 py-3.5 font-mono font-bold text-slate-800 whitespace-nowrap">{{ $item['nik'] ?? '-' }}</td>
+                                <td class="px-4 py-3.5 font-extrabold text-slate-900 whitespace-nowrap">{{ $item['nama_warga'] ?? '-' }}</td>
+                                <td class="px-4 py-3.5 text-slate-600 whitespace-nowrap">{{ $item['rt_rw'] ?? '-' }}</td>
+                                <td class="px-4 py-3.5 text-center font-black text-indigo-600 text-sm whitespace-nowrap">
                                     {{ number_format($item['score'], 4) }}
                                 </td>
-                                <td class="px-6 py-4 text-center">
+                                <td class="px-6 py-3.5 text-center whitespace-nowrap">
                                     @if($item['rank'] <= 10)
-                                        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-extrabold rounded-full border border-emerald-300">
+                                        <span class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-extrabold rounded-full border border-emerald-300 whitespace-nowrap">
                                             Penerima Utama (Lulus)
                                         </span>
                                     @elseif($item['rank'] <= 15)
-                                        <span class="px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full border border-amber-300">
+                                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full border border-amber-300 whitespace-nowrap">
                                             Peringkat Cadangan
                                         </span>
                                     @else
-                                        <span class="px-3 py-1 bg-slate-100 text-slate-500 text-xs font-medium rounded-full border border-slate-200">
+                                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-500 text-xs font-medium rounded-full border border-slate-200 whitespace-nowrap">
                                             Tidak Lulus / Belum Layak
                                         </span>
                                     @endif
