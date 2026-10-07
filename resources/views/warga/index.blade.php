@@ -6,14 +6,14 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
-                Kelola Data Warga Calon Penerima Bansos
+                Data Calon Penerima
             </h2>
             <a href="{{ route('warga.create') }}"
                 class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-sm transition">
                 <svg class="w-4 h-4 me-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
-                Tambah Data Warga Baru
+                Tambah Calon Penerima
             </a>
         </div>
     </x-slot>
@@ -26,10 +26,8 @@
                 <div
                     class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h3 class="text-base font-bold text-slate-800">Daftar Warga Calon Penerima Bantuan Sosial
-                            (Bansos)</h3>
-                        <p class="text-xs text-slate-500 mt-1">Data warga yang akan dinilai prioritas
-                            penerimaan bansos menggunakan metode SAW.</p>
+                        <h3 class="text-base font-bold text-slate-800">Daftar Calon Penerima Bansos</h3>
+                        <p class="text-xs text-slate-500 mt-1">Data warga yang menjadi kandidat dalam proses seleksi menggunakan metode SAW.</p>
                     </div>
                     <div class="relative w-full sm:w-72">
                         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -53,7 +51,7 @@
                                 <th class="px-2 py-3">Nama Kepala Keluarga</th>
                                 <th class="px-2 py-3 whitespace-nowrap">RT / RW</th>
                                 <th class="px-2 py-3">Pekerjaan</th>
-                                <th class="px-2 py-3 text-center whitespace-nowrap">Status Akun</th>
+                                <th class="px-2 py-3 text-center whitespace-nowrap">Akun</th>
                                 <th class="ps-1 pe-4 py-3 text-center whitespace-nowrap">Aksi</th>
                             </tr>
                         </thead>
@@ -127,7 +125,7 @@
                             @empty
                                 <tr>
                                     <td colspan="8" class="px-6 py-8 text-center text-slate-400">
-                                        Belum ada data warga / calon penerima bansos. Silakan tambah data baru.
+                                        Belum ada data calon penerima bansos. Silakan tambah data baru.
                                     </td>
                                 </tr>
                             @endforelse
@@ -139,7 +137,7 @@
                     class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <span
                         class="text-xs font-semibold px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 w-fit">
-                        Total: {{ $totalWarga }} Warga Terdaftar
+                        Total: {{ $totalWarga }} Calon Penerima
                     </span>
                     <div>
                         {{ $alternatif->links('partials.pagination') }}

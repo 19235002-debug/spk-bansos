@@ -27,7 +27,7 @@
                         </svg>
                         ALUR SELEKSI PENERIMA BANSOS
                     </h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Panduan 4 langkah untuk mengelola dan memproses penyaluran bansos.</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Ikuti tahapan pengolahan data hingga menghasilkan rekomendasi penerima bantuan.</p>
                 </div>
                 <div>
                     <span

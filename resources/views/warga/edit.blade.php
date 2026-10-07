@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-bold text-xl text-slate-800 leading-tight">
-            Edit Data Warga: {{ $alternatif->nama_warga }}
+            Edit Calon Penerima: {{ $alternatif->nama_warga }}
         </h2>
     </x-slot>
 
@@ -142,7 +142,7 @@
                         </a>
                         <button type="submit"
                             class="px-5 py-2 bg-indigo-600 text-white font-semibold text-xs rounded-xl hover:bg-indigo-700 transition shadow-sm">
-                            Perbarui Data Warga
+                            Perbarui Data Calon Penerima
                         </button>
                     </div>
                 </form>

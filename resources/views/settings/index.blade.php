@@ -15,7 +15,7 @@
                 </div>
                 <div>
                     <h2 class="font-black text-xl text-slate-900 leading-tight">
-                        Pengaturan Umum & Branding Portal
+                        Pengaturan Sistem
                     </h2>
                     <p class="text-xs text-slate-500 font-medium mt-0.5">Kelola identitas, logo, stempel resmi RT,
                         dan informasi kontak sistem.</p>

@@ -1,21 +1,21 @@
 <!-- Sidebar Navigation (TailwindAdmin Theme) -->
 <aside class="w-64 bg-slate-900 border-r border-slate-800 text-slate-300 flex flex-col h-full shrink-0">
     <!-- Brand Logo Header -->
-    <div class="h-16 shrink-0 flex items-center px-6 border-b border-slate-800 bg-slate-950/60">
+    <div class="h-14 shrink-0 flex items-center px-5 border-b border-slate-800 bg-slate-950/60">
         <a href="{{ route('dashboard') }}" class="flex items-center gap-3">
             @if(setting('app_logo') && file_exists(public_path(setting('app_logo'))))
-                <img src="{{ asset(setting('app_logo')) }}" alt="Logo App" class="h-9 w-auto object-contain">
+                <img src="{{ asset(setting('app_logo')) }}" alt="Logo App" class="h-8 w-auto object-contain">
             @else
                 <div
-                    class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-indigo-500/20">
-                    {{ strtoupper(substr(setting('app_name', 'SPK'), 0, 1)) }}
+                    class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-white font-black text-base shadow-md shadow-indigo-500/20">
+                    S
                 </div>
             @endif
             <div class="flex flex-col">
                 <span
-                    class="font-extrabold text-white tracking-tight leading-none text-sm uppercase">{{ setting('app_name', 'SPK BANSOS RT') }}</span>
+                    class="font-black text-white tracking-tight leading-none text-xs uppercase">SPK BANSOS</span>
                 <span
-                    class="text-[10px] text-indigo-400 font-bold uppercase tracking-widest mt-1">{{ setting('app_tagline', 'PORTAL SELEKSI') }}</span>
+                    class="text-[9px] text-indigo-400 font-bold uppercase tracking-widest mt-0.5">RT 011/04 JELAMBAR</span>
             </div>
         </a>
     </div>
@@ -23,9 +23,9 @@
     <!-- Sidebar Menu Items -->
     <div class="flex-1 overflow-y-auto p-4 space-y-6 sidebar-menu">
         @if(Auth::user()->isAdmin())
-            <!-- GROUP 1 : DASHBOARD -->
+            <!-- GROUP 1 : UTAMA -->
             <div>
-                <p class="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">DASHBOARD</p>
+                <p class="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">UTAMA</p>
                 <nav class="space-y-1">
                     <a href="{{ route('dashboard') }}"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all duration-150 {{ request()->routeIs('dashboard') ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800/80' }}">
@@ -48,7 +48,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                         </svg>
-                        <span>Data Warga</span>
+                        <span>Calon Penerima</span>
                     </a>
 
                     <a href="{{ route('kriteria.index') }}"
@@ -101,7 +101,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span>Pengaturan Sistem</span>
+                        <span>Pengaturan</span>
                     </a>
 
                     <a href="{{ route('dokumentasi.index') }}"
@@ -126,7 +126,7 @@
         @else
             <!-- GROUP WARGA -->
             <div>
-                <p class="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">DASHBOARD</p>
+                <p class="px-3 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">UTAMA</p>
                 <nav class="space-y-1">
                     <a href="{{ route('dashboard') }}"
                         class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold transition-all duration-150 {{ request()->routeIs('dashboard') ? 'bg-indigo-600 text-white shadow-md shadow-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-800/80' }}">

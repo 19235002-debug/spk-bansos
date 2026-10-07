@@ -25,10 +25,9 @@
             <!-- Kriteria Table Card -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
                 <div class="p-6 border-b border-slate-100">
-                    <h3 class="text-base font-bold text-slate-800">Daftar Kriteria Pemilihan Bantuan Sosial (Bansos)
+                    <h3 class="text-base font-bold text-slate-800">Daftar Kriteria Penilaian
                     </h3>
-                    <p class="text-xs text-slate-500 mt-1">Daftar parameter kriteria yang digunakan dalam penilaian
-                        bansos warga RT.</p>
+                    <p class="text-xs text-slate-500 mt-1">Parameter yang digunakan untuk menentukan prioritas calon penerima bansos.</p>
                 </div>
 
                 <div class="overflow-x-auto">

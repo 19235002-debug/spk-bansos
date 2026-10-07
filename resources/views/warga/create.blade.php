@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-bold text-xl text-slate-800 leading-tight">
-            Tambah Data Warga (Calon Penerima Bansos)
+            Tambah Calon Penerima
         </h2>
     </x-slot>
 
@@ -111,7 +111,7 @@
                         </a>
                         <button type="submit"
                             class="px-5 py-2 bg-indigo-600 text-white font-semibold text-xs rounded-xl hover:bg-indigo-700 transition shadow-sm">
-                            Simpan Data Warga
+                            Simpan Calon Penerima
                         </button>
                     </div>
                 </form>

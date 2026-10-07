@@ -4,9 +4,9 @@
             <div>
                 <h2 class="font-black text-xl text-slate-900 leading-tight flex items-center gap-2">
                     <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                    Dashboard Warga (Calon Penerima Bansos)
+                    Dashboard
                 </h2>
-                <p class="text-xs text-slate-500 mt-0.5">Portal Status & Hasil Seleksi Penerimaan Bantuan Sosial RT</p>
+                <p class="text-xs text-slate-500 mt-0.5">Sistem Pendukung Keputusan Seleksi Penerima Bantuan Sosial RT 011/04 Jelambar</p>
             </div>
 
             <div class="flex flex-wrap items-center gap-2">
