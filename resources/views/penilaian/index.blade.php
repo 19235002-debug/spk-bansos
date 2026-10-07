@@ -97,18 +97,18 @@
                                                     @php
                                                         $formattedVal = old('nilai.'.$alt->id.'.'.$k->id, $currentVal > 0 ? number_format($currentVal, 0, ',', '.') : '');
                                                     @endphp
-                                                    <div class="relative flex items-center justify-center max-w-[130px] mx-auto">
-                                                        <span class="absolute left-2 text-[11px] font-bold text-slate-400 pointer-events-none">Rp</span>
+                                                    <div class="relative flex items-center justify-center max-w-[140px] mx-auto">
+                                                        <span class="absolute left-2.5 text-[11px] font-bold text-slate-400 pointer-events-none">Rp</span>
                                                         <input type="text" 
                                                                name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
                                                                value="{{ $formattedVal }}" 
                                                                placeholder="2.500.000" 
                                                                oninput="formatRupiahInput(this)"
-                                                               class="w-full ps-7 pe-2 py-1.5 text-right rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
+                                                               class="w-full ps-8 pe-2.5 py-1.5 text-right rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
                                                                required>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C2')
-                                                    <div class="max-w-[70px] mx-auto">
+                                                    <div class="max-w-[85px] mx-auto">
                                                         <input type="number" 
                                                                step="1"
                                                                min="0"
@@ -119,9 +119,9 @@
                                                                required>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C3')
-                                                    <div class="max-w-[155px] mx-auto">
+                                                    <div class="max-w-[195px] mx-auto">
                                                         <select name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                                class="w-full text-[11px] py-1.5 px-2 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" 
+                                                                class="w-full text-[11px] py-1.5 ps-2.5 pe-7 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 truncate" 
                                                                 required>
                                                             <option value="1" {{ (int)$currentVal == 1 ? 'selected' : '' }}>1 - Sangat Baik</option>
                                                             <option value="2" {{ (int)$currentVal == 2 ? 'selected' : '' }}>2 - Baik</option>
@@ -131,7 +131,7 @@
                                                         </select>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C4')
-                                                    <div class="max-w-[85px] mx-auto">
+                                                    <div class="max-w-[95px] mx-auto">
                                                         <input type="number" 
                                                                step="1"
                                                                min="0"
@@ -142,7 +142,7 @@
                                                                required>
                                                     </div>
                                                 @else
-                                                    <div class="max-w-[85px] mx-auto">
+                                                    <div class="max-w-[95px] mx-auto">
                                                         <input type="number" 
                                                                step="any"
                                                                min="0"
