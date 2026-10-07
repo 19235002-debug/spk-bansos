@@ -97,7 +97,7 @@
                                                     @php
                                                         $formattedVal = old('nilai.'.$alt->id.'.'.$k->id, $currentVal > 0 ? number_format($currentVal, 0, ',', '.') : '');
                                                     @endphp
-                                                    <div class="relative flex items-center justify-center max-w-[140px] mx-auto">
+                                                    <div class="relative flex items-center justify-center max-w-[135px] mx-auto">
                                                         <span class="absolute left-2.5 text-[11px] font-bold text-slate-400 pointer-events-none">Rp</span>
                                                         <input type="text" 
                                                                name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
@@ -108,7 +108,7 @@
                                                                required>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C2')
-                                                    <div class="max-w-[85px] mx-auto">
+                                                    <div class="max-w-[70px] mx-auto">
                                                         <input type="number" 
                                                                step="1"
                                                                min="0"
@@ -119,9 +119,9 @@
                                                                required>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C3')
-                                                    <div class="max-w-[195px] mx-auto">
+                                                    <div class="min-w-[185px] max-w-[210px] mx-auto">
                                                         <select name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                                class="w-full text-[11px] py-1.5 ps-2.5 pe-7 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 truncate" 
+                                                                class="w-full text-[11px] py-1.5 ps-2.5 pe-6 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" 
                                                                 required>
                                                             <option value="1" {{ (int)$currentVal == 1 ? 'selected' : '' }}>1 - Sangat Baik</option>
                                                             <option value="2" {{ (int)$currentVal == 2 ? 'selected' : '' }}>2 - Baik</option>
@@ -131,7 +131,7 @@
                                                         </select>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C4')
-                                                    <div class="max-w-[95px] mx-auto">
+                                                    <div class="max-w-[85px] mx-auto">
                                                         <input type="number" 
                                                                step="1"
                                                                min="0"
@@ -142,7 +142,7 @@
                                                                required>
                                                     </div>
                                                 @else
-                                                    <div class="max-w-[95px] mx-auto">
+                                                    <div class="max-w-[85px] mx-auto">
                                                         <input type="number" 
                                                                step="any"
                                                                min="0"
