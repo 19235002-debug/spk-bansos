@@ -12,19 +12,19 @@ class Penilaian extends Model
     protected $table = 'penilaian';
 
     protected $fillable = [
-        'alternatif_id',
+        'warga_id',
         'kriteria_id',
         'nilai',
     ];
 
-    public function alternatif()
-    {
-        return $this->belongsTo(Warga::class, 'alternatif_id');
-    }
-
     public function warga()
     {
-        return $this->belongsTo(Warga::class, 'alternatif_id');
+        return $this->belongsTo(Warga::class, 'warga_id');
+    }
+
+    public function alternatif()
+    {
+        return $this->belongsTo(Warga::class, 'warga_id');
     }
 
     public function kriteria()

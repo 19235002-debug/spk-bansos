@@ -45,8 +45,8 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="rt_rw" class="block text-xs font-bold uppercase text-slate-700 mb-1">Nomor / Wilayah RT</label>
-                            <input type="text" name="rt_rw" id="rt_rw" value="{{ old('rt_rw', 'RT 01') }}"
-                                placeholder="RT 01"
+                            <input type="text" name="rt_rw" id="rt_rw" value="{{ old('rt_rw', 'RT 011/04') }}"
+                                placeholder="RT 011/04"
                                 class="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                             @error('rt_rw')
                             <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
@@ -54,8 +54,8 @@
 
                         <div>
                             <label for="pekerjaan" class="block text-xs font-bold uppercase text-slate-700 mb-1">Pekerjaan Utama</label>
-                            <input type="text" name="pekerjaan" id="pekerjaan" value="{{ old('pekerjaan', 'Buruh Harian Lepas') }}"
-                                placeholder="Buruh Harian Lepas"
+                            <input type="text" name="pekerjaan" id="pekerjaan" value="{{ old('pekerjaan') }}"
+                                placeholder="Contoh: Buruh Bangunan / Driver Ojol"
                                 class="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                             @error('pekerjaan')
                             <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror
@@ -64,8 +64,8 @@
 
                     <div>
                         <label for="alamat" class="block text-xs font-bold uppercase text-slate-700 mb-1">Alamat Lengkap / No. Rumah</label>
-                        <input type="text" name="alamat" id="alamat" value="{{ old('alamat') }}"
-                            placeholder="Jl. Mawar No. 12, RT 01"
+                        <input type="text" name="alamat" id="alamat" value="{{ old('alamat', 'Jl. Satria X No. , RT 011/04, Kel. Jelambar, Jakarta Barat') }}"
+                            placeholder="Contoh: Jl. Satria X No. 12, RT 011/04, Kel. Jelambar"
                             class="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                         @error('alamat')
                         <p class="text-xs text-rose-500 mt-1">{{ $message }}</p> @enderror

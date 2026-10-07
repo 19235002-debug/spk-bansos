@@ -27,9 +27,9 @@ class KriteriaSeeder extends Seeder
             ],
             [
                 'kode_kriteria' => 'C3',
-                'nama_kriteria' => 'Kondisi Ketidaklayakan Rumah (Skor 1-100)',
+                'nama_kriteria' => 'Kondisi Rumah (Skor 1-5)',
                 'bobot' => 0.20,
-                'tipe' => 'benefit', // Semakin tinggi skor ketidaklayakan rumah, semakin prioritas
+                'tipe' => 'benefit', // Semakin tinggi skor kondisi rumah (semakin memprihatinkan), semakin prioritas
             ],
             [
                 'kode_kriteria' => 'C4',

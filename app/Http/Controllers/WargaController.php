@@ -30,8 +30,8 @@ class WargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_kk' => 'nullable|string|max:30',
-            'nik' => 'required|string|max:30|unique:alternatif,nik',
+            'no_kk' => 'nullable|string|max:30|unique:warga,no_kk',
+            'nik' => 'required|string|max:30|unique:warga,nik',
             'nama_warga' => 'required|string|max:255',
             'rt_rw' => 'nullable|string|max:255',
             'alamat' => 'nullable|string|max:255',
@@ -40,6 +40,7 @@ class WargaController extends Controller
             'create_user' => 'nullable|boolean',
             'email' => 'nullable|required_if:create_user,1|email|unique:users,email',
         ], [
+            'no_kk.unique' => 'Nomor KK sudah terdaftar.',
             'nik.required' => 'NIK (Nomor Induk Kependudukan) wajib diisi.',
             'nik.unique' => 'NIK sudah terdaftar.',
             'nama_warga.required' => 'Nama Warga wajib diisi.',
@@ -72,7 +73,7 @@ class WargaController extends Controller
         $kriteriaList = Kriteria::all();
         foreach ($kriteriaList as $k) {
             Penilaian::firstOrCreate([
-                'alternatif_id' => $alt->id,
+                'warga_id' => $alt->id,
                 'kriteria_id' => $k->id,
             ], [
                 'nilai' => 0,
@@ -100,8 +101,8 @@ class WargaController extends Controller
     public function update(Request $request, Warga $warga)
     {
         $request->validate([
-            'no_kk' => 'nullable|string|max:30',
-            'nik' => 'required|string|max:30|unique:alternatif,nik,' . $warga->id,
+            'no_kk' => 'nullable|string|max:30|unique:warga,no_kk,' . $warga->id,
+            'nik' => 'required|string|max:30|unique:warga,nik,' . $warga->id,
             'nama_warga' => 'required|string|max:255',
             'rt_rw' => 'nullable|string|max:255',
             'alamat' => 'nullable|string|max:255',
@@ -111,6 +112,7 @@ class WargaController extends Controller
             'create_user' => 'nullable|boolean',
             'email' => 'nullable|required_if:create_user,1|email|unique:users,email',
         ], [
+            'no_kk.unique' => 'Nomor KK sudah terdaftar.',
             'nik.required' => 'NIK wajib diisi.',
             'nik.unique' => 'NIK sudah terdaftar.',
             'nama_warga.required' => 'Nama Warga wajib diisi.',

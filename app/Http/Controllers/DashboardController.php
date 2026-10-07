@@ -47,10 +47,10 @@ class DashboardController extends Controller
             ];
 
             return view('dashboard.admin', compact(
-                'totalAlternatif', 
-                'totalKriteria', 
-                'totalUser', 
-                'topRanking', 
+                'totalAlternatif',
+                'totalKriteria',
+                'totalUser',
+                'topRanking',
                 'sawData',
                 'kriteriaStatus',
                 'alternatifStatus',
@@ -61,7 +61,7 @@ class DashboardController extends Controller
             // Warga Dashboard
             $alternatif = Warga::where('user_id', $user->id)->first();
             $userRank = null;
-            
+
             if ($alternatif) {
                 foreach ($sawData['ranking'] as $item) {
                     if ($item['alternatif_id'] == $alternatif->id) {
@@ -112,7 +112,7 @@ class DashboardController extends Controller
                     'kriteria_id' => $kriteriaId,
                 ],
                 [
-                    'nilai' => (float)$nilaiValue,
+                    'nilai' => (float) $nilaiValue,
                 ]
             );
         }
@@ -126,7 +126,7 @@ class DashboardController extends Controller
     public function claimNim(Request $request)
     {
         $request->validate([
-            'nik' => 'required|string|exists:alternatif,nik',
+            'nik' => 'required|string|exists:warga,nik',
         ]);
 
         $user = $request->user();

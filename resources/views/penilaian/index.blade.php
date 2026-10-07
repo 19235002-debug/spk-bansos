@@ -3,7 +3,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <h2 class="font-bold text-xl text-slate-800 leading-tight flex items-center gap-2">
                 <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                Matriks Penilaian Alternatif
+                Matriks Penilaian Data Warga
             </h2>
         </div>
     </x-slot>
@@ -30,7 +30,7 @@
                                 @elseif($k->kode_kriteria == 'C2')
                                     Skala: Tanggungan (0 Jiwa atau lebih)
                                 @elseif($k->kode_kriteria == 'C3')
-                                    Skala Range: 0 - 100
+                                    Skala: 1 - 5 (1: Sangat Baik, 5: Sangat Memprihatinkan)
                                 @elseif($k->kode_kriteria == 'C4')
                                     Skala: Daya Listrik (VA)
                                 @else
@@ -63,94 +63,94 @@
                     </div>
 
                     <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-slate-600">
-                            <thead class="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200">
+                        <table class="w-full text-xs text-left text-slate-600 border-collapse">
+                            <thead class="text-xs text-slate-700 bg-slate-50 border-b border-slate-200">
                                 <tr>
-                                    <th class="px-3 py-3 text-center w-10">No</th>
-                                    <th class="px-3 py-3 whitespace-nowrap">NIK</th>
-                                    <th class="px-3 py-3">Nama Warga</th>
+                                    <th class="px-2 py-3 text-center w-10">No</th>
+                                    <th class="px-2.5 py-3 w-32">NIK</th>
+                                    <th class="px-2.5 py-3 min-w-[110px]">Nama Warga</th>
                                     @foreach($kriteria as $k)
-                                        <th class="px-3 py-3 text-center">
-                                            <div>{{ $k->kode_kriteria }} ({{ $k->nama_kriteria }})</div>
-                                            <div class="text-[10px] text-slate-400 font-normal uppercase mt-0.5 whitespace-nowrap">
+                                        <th class="px-2 py-3 text-center">
+                                            <div class="inline-block px-1.5 py-0.5 bg-indigo-50 border border-indigo-100 rounded text-[11px] font-mono font-bold text-indigo-700">{{ $k->kode_kriteria }}</div>
+                                            <div class="font-bold text-slate-800 text-xs mt-1 leading-tight max-w-[140px] mx-auto">{{ $k->nama_kriteria }}</div>
+                                            <div class="text-[10px] text-slate-400 font-normal uppercase mt-0.5">
                                                 {{ $k->tipe }} | {{ $k->bobot }}
-                                                @if($k->kode_kriteria == 'C1')
-                                                    (Rupiah)
-                                                @elseif($k->kode_kriteria == 'C2')
-                                                    (0 Jiwa / lebih)
-                                                @elseif($k->kode_kriteria == 'C3')
-                                                    (0 - 100)
-                                                @elseif($k->kode_kriteria == 'C4')
-                                                    (VA)
-                                                @endif
                                             </div>
                                         </th>
                                     @endforeach
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-slate-100">
+                            <tbody class="divide-y divide-slate-100 align-middle">
                                 @forelse($alternatif as $index => $alt)
                                     <tr class="hover:bg-slate-50/80 transition"
                                         x-show="!search || '{{ strtolower($alt->nik . ' ' . $alt->nama_warga) }}'.includes(search.toLowerCase())">
-                                        <td class="px-3 py-3 text-center font-bold text-slate-500 text-xs">{{ ($alternatif->currentPage() - 1) * $alternatif->perPage() + $index + 1 }}</td>
-                                        <td class="px-3 py-3 font-mono font-bold text-slate-800 text-xs whitespace-nowrap">{{ $alt->nik }}</td>
-                                        <td class="px-3 py-3 font-bold text-slate-800 text-xs">{{ $alt->nama_warga }}</td>
+                                        <td class="px-2 py-2 text-center font-bold text-slate-500 text-xs">{{ ($alternatif->currentPage() - 1) * $alternatif->perPage() + $index + 1 }}</td>
+                                        <td class="px-2.5 py-2 font-mono font-bold text-slate-800 text-xs whitespace-nowrap">{{ $alt->nik }}</td>
+                                        <td class="px-2.5 py-2 font-bold text-slate-900 text-xs">{{ $alt->nama_warga }}</td>
 
                                         @foreach($kriteria as $k)
                                             @php
                                                 $currentVal = $penilaianMatrix[$alt->id][$k->id] ?? 0;
                                             @endphp
-                                            <td class="px-4 py-3 text-center">
+                                            <td class="px-2 py-2 text-center align-middle">
                                                 @if($k->kode_kriteria == 'C1')
                                                     @php
                                                         $formattedVal = old('nilai.'.$alt->id.'.'.$k->id, $currentVal > 0 ? number_format($currentVal, 0, ',', '.') : '');
                                                     @endphp
-                                                    <div class="relative flex items-center justify-center max-w-[170px] mx-auto">
-                                                        <span class="absolute left-3 text-xs font-bold text-slate-400 pointer-events-none">Rp</span>
+                                                    <div class="relative flex items-center justify-center max-w-[130px] mx-auto">
+                                                        <span class="absolute left-2 text-[11px] font-bold text-slate-400 pointer-events-none">Rp</span>
                                                         <input type="text" 
                                                                name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
                                                                value="{{ $formattedVal }}" 
                                                                placeholder="2.500.000" 
                                                                oninput="formatRupiahInput(this)"
-                                                               class="w-full ps-9 text-right pe-3 rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
+                                                               class="w-full ps-7 pe-2 py-1.5 text-right rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
                                                                required>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C2')
-                                                    <input type="number" 
-                                                           step="1"
-                                                           min="0"
-                                                           name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                           value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal >= 0 ? (int)$currentVal : '') }}" 
-                                                           placeholder="0 - 10"
-                                                           class="w-28 text-center placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
-                                                           required>
+                                                    <div class="max-w-[70px] mx-auto">
+                                                        <input type="number" 
+                                                               step="1"
+                                                               min="0"
+                                                               name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
+                                                               value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal >= 0 ? (int)$currentVal : '') }}" 
+                                                               placeholder="0"
+                                                               class="w-full text-center py-1.5 placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
+                                                               required>
+                                                    </div>
                                                 @elseif($k->kode_kriteria == 'C3')
-                                                    <input type="number" 
-                                                           step="1"
-                                                           min="0"
-                                                           max="100"
-                                                           name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                           value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal >= 0 ? (int)$currentVal : '') }}" 
-                                                           placeholder="0 - 100"
-                                                           class="w-28 text-center placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
-                                                           required>
+                                                    <div class="max-w-[155px] mx-auto">
+                                                        <select name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
+                                                                class="w-full text-[11px] py-1.5 px-2 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" 
+                                                                required>
+                                                            <option value="1" {{ (int)$currentVal == 1 ? 'selected' : '' }}>1 - Sangat Baik</option>
+                                                            <option value="2" {{ (int)$currentVal == 2 ? 'selected' : '' }}>2 - Baik</option>
+                                                            <option value="3" {{ (int)$currentVal == 3 ? 'selected' : '' }}>3 - Cukup</option>
+                                                            <option value="4" {{ (int)$currentVal == 4 ? 'selected' : '' }}>4 - Memprihatinkan</option>
+                                                            <option value="5" {{ (int)$currentVal == 5 ? 'selected' : '' }}>5 - Sangat Memprihatinkan</option>
+                                                        </select>
+                                                    </div>
                                                 @elseif($k->kode_kriteria == 'C4')
-                                                    <input type="number" 
-                                                           step="1"
-                                                           min="0"
-                                                           name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                           value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal >= 0 ? (int)$currentVal : '') }}" 
-                                                           placeholder="450 / 900"
-                                                           class="w-28 text-center placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
-                                                           required>
+                                                    <div class="max-w-[85px] mx-auto">
+                                                        <input type="number" 
+                                                               step="1"
+                                                               min="0"
+                                                               name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
+                                                               value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal >= 0 ? (int)$currentVal : '') }}" 
+                                                               placeholder="450"
+                                                               class="w-full text-center py-1.5 placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
+                                                               required>
+                                                    </div>
                                                 @else
-                                                    <input type="number" 
-                                                           step="any"
-                                                           min="0"
-                                                           name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                           value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal) }}" 
-                                                           class="w-28 text-center placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
-                                                           required>
+                                                    <div class="max-w-[85px] mx-auto">
+                                                        <input type="number" 
+                                                               step="any"
+                                                               min="0"
+                                                               name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
+                                                               value="{{ old('nilai.'.$alt->id.'.'.$k->id, $currentVal) }}" 
+                                                               class="w-full text-center py-1.5 placeholder:text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-xs font-mono font-bold text-slate-800 placeholder:text-slate-300 placeholder:font-normal placeholder:opacity-60" 
+                                                               required>
+                                                    </div>
                                                 @endif
                                             </td>
                                         @endforeach
@@ -158,7 +158,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="{{ count($kriteria) + 3 }}" class="px-6 py-8 text-center text-slate-400">
-                                            Belum ada data alternatif warga. Silakan input alternatif terlebih dahulu.
+                                            Belum ada data warga. Silakan input data warga terlebih dahulu.
                                         </td>
                                     </tr>
                                 @endforelse

@@ -21,10 +21,10 @@ return new class extends Migration
 
         // Insert Default Settings
         $defaults = [
-            ['key' => 'app_name', 'value' => 'SPK Bansos RT'],
-            ['key' => 'app_tagline', 'value' => 'PORTAL SELEKSI BANSOS RT 011 / RW 04'],
-            ['key' => 'institution_name', 'value' => 'Pengurus RT 011 / RW 04 Jelambar'],
-            ['key' => 'footer_text', 'value' => 'SPK Bansos RT 011 / RW 04 Jelambar • Developed with Laravel & Tailwind'],
+            ['key' => 'app_name', 'value' => 'SPK Bansos RT 011/04'],
+            ['key' => 'app_tagline', 'value' => 'PORTAL SELEKSI BANSOS RT 011/04'],
+            ['key' => 'institution_name', 'value' => 'Pengurus RT 011/04 Jelambar'],
+            ['key' => 'footer_text', 'value' => 'SPK Bansos RT 011/04 Jelambar • Developed with Laravel & Tailwind'],
             ['key' => 'favicon', 'value' => null],
             ['key' => 'app_logo', 'value' => null],
             ['key' => 'contact_email', 'value' => 'admin@jelambar-rt011.id'],

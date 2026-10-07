@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasColumn('alternatif', 'no_kk')) {
-            Schema::table('alternatif', function (Blueprint $table) {
+        if (!Schema::hasColumn('warga', 'no_kk')) {
+            Schema::table('warga', function (Blueprint $table) {
                 $table->string('no_kk')->nullable()->after('user_id');
             });
         }
@@ -23,8 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if (Schema::hasColumn('alternatif', 'no_kk')) {
-            Schema::table('alternatif', function (Blueprint $table) {
+        if (Schema::hasColumn('warga', 'no_kk')) {
+            Schema::table('warga', function (Blueprint $table) {
                 $table->dropColumn('no_kk');
             });
         }

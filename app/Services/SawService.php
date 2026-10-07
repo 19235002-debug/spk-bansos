@@ -99,6 +99,7 @@ class SawService
 
             $rankingResults[] = [
                 'alternatif_id' => $alt->id,
+                'warga_id' => $alt->id,
                 'no_kk' => $alt->no_kk,
                 'nik' => $alt->nik,
                 'nim' => $alt->nik,

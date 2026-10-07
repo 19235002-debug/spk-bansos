@@ -131,7 +131,16 @@
                                             @elseif($k->kode_kriteria == 'C2')
                                                 {{ (int)$val }} Jiwa
                                             @elseif($k->kode_kriteria == 'C3')
-                                                {{ (int)$val }}
+                                                <span class="font-bold font-mono">{{ (int)$val }}</span>
+                                                <span class="text-[10px] block text-slate-500 font-sans">
+                                                    @if((int)$val == 1) (Sangat Baik)
+                                                    @elseif((int)$val == 2) (Baik)
+                                                    @elseif((int)$val == 3) (Cukup)
+                                                    @elseif((int)$val == 4) (Memprihatinkan)
+                                                    @elseif((int)$val == 5) (Sangat Memprihatinkan)
+                                                    @else (Skor {{ (int)$val }})
+                                                    @endif
+                                                </span>
                                             @elseif($k->kode_kriteria == 'C4')
                                                 {{ (int)$val }} VA
                                             @else

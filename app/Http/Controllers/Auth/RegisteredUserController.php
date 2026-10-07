@@ -76,7 +76,7 @@ class RegisteredUserController extends Controller
                     'user_id' => $user->id,
                     'nik' => $nikInput,
                     'nama_warga' => $request->name,
-                    'rt_rw' => 'RT 01',
+                    'rt_rw' => 'RT 011/04',
                 ]);
             }
 
@@ -84,7 +84,7 @@ class RegisteredUserController extends Controller
             $kriteriaList = Kriteria::all();
             foreach ($kriteriaList as $k) {
                 Penilaian::firstOrCreate([
-                    'alternatif_id' => $alt->id,
+                    'warga_id' => $alt->id,
                     'kriteria_id' => $k->id,
                 ], [
                     'nilai' => 0,

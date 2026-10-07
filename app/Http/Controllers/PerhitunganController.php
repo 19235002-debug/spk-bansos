@@ -30,7 +30,8 @@ class PerhitunganController extends Controller
 
         $userRank = null;
         foreach ($sawData['ranking'] as $item) {
-            if ($item['alternatif_id'] == $alternatif->id) {
+            $itemId = $item['warga_id'] ?? $item['alternatif_id'] ?? null;
+            if ($itemId == $alternatif->id) {
                 $userRank = $item;
                 break;
             }

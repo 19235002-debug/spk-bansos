@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('penilaian', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('alternatif_id')->constrained('alternatif')->onDelete('cascade');
+            $table->foreignId('warga_id')->constrained('warga')->onDelete('cascade');
             $table->foreignId('kriteria_id')->constrained('kriteria')->onDelete('cascade');
             $table->double('nilai');
             $table->timestamps();
 
-            $table->unique(['alternatif_id', 'kriteria_id']);
+            $table->unique(['warga_id', 'kriteria_id']);
         });
     }
 

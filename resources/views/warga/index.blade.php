@@ -6,7 +6,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
-                Kelola Data Alternatif (Warga / Calon Penerima Bansos)
+                Kelola Data Warga Calon Penerima Bansos
             </h2>
             <a href="{{ route('warga.create') }}"
                 class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs rounded-xl shadow-sm transition">
@@ -28,7 +28,7 @@
                     <div>
                         <h3 class="text-base font-bold text-slate-800">Daftar Warga Calon Penerima Bantuan Sosial
                             (Bansos)</h3>
-                        <p class="text-xs text-slate-500 mt-1">Data alternatif warga yang akan dinilai prioritas
+                        <p class="text-xs text-slate-500 mt-1">Data warga yang akan dinilai prioritas
                             penerimaan bansos menggunakan metode SAW.</p>
                     </div>
                     <div class="relative w-full sm:w-72">

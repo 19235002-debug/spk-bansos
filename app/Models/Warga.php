@@ -9,7 +9,7 @@ class Warga extends Model
 {
     use HasFactory;
 
-    protected $table = 'alternatif';
+    protected $table = 'warga';
 
     protected $fillable = [
         'user_id',
@@ -28,7 +28,7 @@ class Warga extends Model
 
     public function penilaian()
     {
-        return $this->hasMany(Penilaian::class, 'alternatif_id');
+        return $this->hasMany(Penilaian::class, 'warga_id');
     }
 
     /**

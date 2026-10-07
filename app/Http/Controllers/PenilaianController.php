@@ -69,7 +69,7 @@ class PenilaianController extends Controller
             foreach ($kriteriaScores as $kriteriaId => $val) {
                 Penilaian::updateOrCreate(
                     [
-                        'alternatif_id' => $alternatifId,
+                        'warga_id' => $alternatifId,
                         'kriteria_id' => $kriteriaId,
                     ],
                     [

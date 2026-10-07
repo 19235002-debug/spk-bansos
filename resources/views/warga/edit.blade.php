@@ -45,7 +45,7 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label for="rt_rw" class="block text-xs font-bold uppercase text-slate-700 mb-1">No. RT</label>
+                            <label for="rt_rw" class="block text-xs font-bold uppercase text-slate-700 mb-1">Nomor / Wilayah RT</label>
                             <input type="text" name="rt_rw" id="rt_rw" value="{{ old('rt_rw', $alternatif->rt_rw) }}"
                                 class="w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 text-sm">
                             @error('rt_rw')

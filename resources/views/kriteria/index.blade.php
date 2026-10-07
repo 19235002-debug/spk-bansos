@@ -21,27 +21,6 @@
     <div class="py-2 bg-slate-50 min-h-screen">
         <div class="max-w-7xl mx-auto space-y-6">
 
-            <!-- Weight Total Status Banner -->
-            <div
-                class="p-4 rounded-xl border {{ abs($totalBobot - 1.0) < 0.001 ? 'bg-indigo-50 border-indigo-200 text-indigo-900' : 'bg-amber-50 border-amber-200 text-amber-900' }} flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                    <div
-                        class="w-10 h-10 rounded-full {{ abs($totalBobot - 1.0) < 0.001 ? 'bg-indigo-600 text-white' : 'bg-amber-500 text-white' }} flex items-center justify-center font-bold shrink-0">
-                        ∑
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm">Akumulasi Total Bobot Kriteria: <strong>{{ $totalBobot }}</strong>
-                            ({{ $totalBobot * 100 }}%)</h4>
-                        <p class="text-xs opacity-90 mt-0.5">
-                            @if(abs($totalBobot - 1.0) < 0.001)
-                                Total bobot sudah bernilai 1.0 (100%). Syarat perhitungan SAW terpenuhi sempurna.
-                            @else
-                                Perhatian: Total bobot disarankan berjumlah 1.0 (100%) agar hasil ranking terstandarisasi.
-                            @endif
-                        </p>
-                    </div>
-                </div>
-            </div>
 
             <!-- Kriteria Table Card -->
             <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
