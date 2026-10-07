@@ -74,7 +74,7 @@
 
                 <!-- Footer -->
                 <footer class="bg-white border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-500">
-                    &copy; {{ date('Y') }} <strong>{{ setting('app_name', 'SPK Bansos RT') }}</strong> &bull; {{ str_replace('{year}', date('Y'), setting('footer_text', 'Developed with Laravel & Tailwind')) }}
+                    {{ str_replace('{year}', date('Y'), setting('footer_text', '© ' . date('Y') . ' ' . setting('app_name', 'SPK Bansos RT') . '. Hak Cipta Dilindungi Undang-Undang.')) }}
                 </footer>
             </div>
         </div>

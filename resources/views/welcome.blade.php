@@ -648,7 +648,7 @@
             <!-- Bottom Copyright -->
             <div class="flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
                 <div>
-                    &copy; {{ date('Y') }} {{ setting('app_name', 'SPK Bansos RT/RW') }} - {{ setting('institution_name', 'Pengurus RT/RW Bansos') }}. All rights reserved.
+                    {{ str_replace('{year}', date('Y'), setting('footer_text', '© ' . date('Y') . ' ' . setting('app_name', 'SPK Bansos RT/RW') . ' - ' . setting('institution_name', 'Pengurus RT/RW Bansos') . '. All rights reserved.')) }}
                 </div>
                 <div class="font-mono text-indigo-400 font-bold">
                     SAW Engine Version v2.0
