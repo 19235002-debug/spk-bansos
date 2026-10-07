@@ -21,6 +21,7 @@ class SettingSeeder extends Seeder
             'footer_text' => '© 2026 SPK Bansos RT 011/04 Jelambar, Grogol Petamburan. Hak Cipta Dilindungi Undang-Undang.',
             'contact_email' => 'admin@jelambar-rt011.id',
             'contact_phone' => '0812-3456-7890',
+            'app_logo' => 'logo-universitas-bina-sarana-informatika-ubsi.png',
             'stempel_rt' => 'uploads/settings/stempel_default.svg',
         ];
 
