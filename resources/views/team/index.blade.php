@@ -53,8 +53,8 @@
                 </div>
 
                 <!-- Doc & Support Card -->
-                <div class="bg-white p-3.5 rounded-2xl border border-cyan-200 shadow-xs flex flex-col justify-between">
-                    <p class="text-[10px] font-bold text-cyan-700 uppercase tracking-wider">Doc & Support</p>
+                <div class="bg-white p-3.5 rounded-2xl border border-emerald-200 shadow-xs flex flex-col justify-between">
+                    <p class="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">Doc & Support</p>
                     <h4 class="text-xl font-black text-slate-800 mt-1">{{ $roleCounts['Doc & Support'] ?? 0 }} <span class="text-[10px] font-normal text-slate-500">Orang</span></h4>
                 </div>
             </div>
@@ -75,6 +75,7 @@
                                             str_contains($roleLower, 'analis') => 'from-indigo-600 to-violet-600 shadow-indigo-200',
                                             str_contains($roleLower, 'developer') => 'from-emerald-500 to-teal-600 shadow-emerald-200',
                                             str_contains($roleLower, 'tester') => 'from-rose-500 to-pink-600 shadow-rose-200',
+                                            str_contains($roleLower, 'doc') || str_contains($roleLower, 'support') || str_contains($roleLower, 'dokumentasi') => 'from-emerald-500 to-teal-600 shadow-emerald-200',
                                             default => 'from-slate-600 to-slate-800 shadow-slate-200',
                                         };
                                     @endphp

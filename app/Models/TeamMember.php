@@ -33,7 +33,7 @@ class TeamMember extends Model
             str_contains($role, 'programmer') || str_contains($role, 'developer') || str_contains($role, 'dev') => 'bg-emerald-100 text-emerald-800 border-emerald-300',
             str_contains($role, 'database') || str_contains($role, 'db') => 'bg-purple-100 text-purple-800 border-purple-300',
             str_contains($role, 'tester') || str_contains($role, 'qa') || str_contains($role, 'quality') => 'bg-rose-100 text-rose-800 border-rose-300',
-            str_contains($role, 'doc') || str_contains($role, 'support') || str_contains($role, 'dokumentasi') => 'bg-cyan-100 text-cyan-800 border-cyan-300',
+            str_contains($role, 'doc') || str_contains($role, 'support') || str_contains($role, 'dokumentasi') => 'bg-emerald-100 text-emerald-800 border-emerald-300',
             default => 'bg-slate-100 text-slate-800 border-slate-300',
         };
     }
