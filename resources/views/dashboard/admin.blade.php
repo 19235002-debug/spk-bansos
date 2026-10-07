@@ -7,10 +7,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
-                    Dashboard Admin Panel
+                    Dashboard
                 </h2>
-                <p class="text-xs text-slate-500 mt-0.5">Sistem Pendukung Keputusan Pemilihan Penerima Bantuan Sosial
-                    (Bansos) Tingkat RT Metode SAW</p>
+                <p class="text-xs text-slate-500 mt-0.5">Sistem Pendukung Keputusan Seleksi Penerima Bantuan Sosial RT 011/04 Jelambar</p>
             </div>
         </div>
     </x-slot>
@@ -21,15 +20,14 @@
         <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-6">
             <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
                 <div>
-                    <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                    <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2 uppercase tracking-wide">
                         <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
-                        Tahapan Operasional Seleksi Bansos RT
+                        ALUR SELEKSI PENERIMA BANSOS
                     </h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Panduan 4 langkah untuk mengelola dan memproses penyaluran
-                        bansos.</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Panduan 4 langkah untuk mengelola dan memproses penyaluran bansos.</p>
                 </div>
                 <div>
                     <span
@@ -68,8 +66,7 @@
                                 @endif
                             </span>
                         </div>
-                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">1. Kriteria
-                            & Bobot Penilaian</h4>
+                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">1. Kriteria & Bobot</h4>
                         <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
                             Tentukan kriteria penilaian, bobot, dan jenis kriteria.
                         </p>
@@ -81,7 +78,7 @@
                     </div>
                 </a>
 
-                <!-- Step 2: Data Warga (Bansos) -->
+                <!-- Step 2: Data Calon Penerima -->
                 <a href="{{ route('warga.index') }}"
                     class="p-4 rounded-xl border {{ $alternatifStatus['isComplete'] ? 'bg-emerald-50/50 border-emerald-200 hover:border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-indigo-300' }} transition group flex flex-col justify-between">
                     <div>
@@ -98,8 +95,7 @@
                                 @endif
                             </span>
                         </div>
-                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">2. Data
-                            Warga Calon Penerima Bansos</h4>
+                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">2. Data Calon Penerima</h4>
                         <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
                             Kelola daftar NIK, nama kepala keluarga, No. RT, dan alamat warga.
                         </p>
@@ -112,7 +108,7 @@
                     </div>
                 </a>
 
-                <!-- Step 3: Input Nilai Matriks -->
+                <!-- Step 3: Penilaian -->
                 <a href="{{ route('penilaian.index') }}"
                     class="p-4 rounded-xl border {{ $penilaianStatus['isComplete'] ? 'bg-emerald-50/50 border-emerald-200 hover:border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-indigo-300' }} transition group flex flex-col justify-between">
                     <div>
@@ -129,8 +125,7 @@
                                 @endif
                             </span>
                         </div>
-                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">3. Pengisian
-                            Nilai Kriteria</h4>
+                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">3. Penilaian</h4>
                         <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
                             Isi skor penilaian untuk setiap warga.
                         </p>
@@ -143,7 +138,7 @@
                     </div>
                 </a>
 
-                <!-- Step 4: Kalkulasi & Cetak Laporan -->
+                <!-- Step 4: Perhitungan SAW -->
                 <a href="{{ route('perhitungan.index') }}"
                     class="p-4 rounded-xl border {{ $sawStatus['isComplete'] ? 'bg-emerald-50/50 border-emerald-200 hover:border-emerald-400' : 'bg-slate-50 border-slate-200 hover:border-indigo-300' }} transition group flex flex-col justify-between">
                     <div>
@@ -160,8 +155,7 @@
                                 @endif
                             </span>
                         </div>
-                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">4.
-                            Perhitungan & Laporan</h4>
+                        <h4 class="font-bold text-slate-900 text-xs group-hover:text-indigo-600 transition">4. Perhitungan SAW</h4>
                         <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
                             Hitung hasil akhir otomatis dan cetak laporan hasil seleksi.
                         </p>
@@ -214,7 +208,7 @@
                 <div class="absolute top-0 left-0 right-0 h-1 bg-emerald-500"></div>
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Total Warga</p>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Calon Penerima</p>
                         <h3 class="text-3xl font-black text-slate-900 mt-1">{{ $totalAlternatif }} <span
                                 class="text-xs font-semibold text-slate-500">Orang</span></h3>
                     </div>
@@ -242,8 +236,7 @@
                 <div class="absolute top-0 left-0 right-0 h-1 bg-violet-500"></div>
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Total Akun
-                            Pengguna</p>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Pengguna Sistem</p>
                         <h3 class="text-3xl font-black text-slate-900 mt-1">{{ $totalUser }} <span
                                 class="text-xs font-semibold text-slate-500">User</span></h3>
                     </div>
@@ -268,8 +261,7 @@
                 <div class="absolute top-0 left-0 right-0 h-1 bg-amber-500"></div>
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Tim Pengembang SI
-                        </p>
+                        <p class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Tim Pengembang</p>
                         <h3 class="text-3xl font-black text-slate-900 mt-1">4 <span
                                 class="text-xs font-semibold text-slate-500">Peran</span></h3>
                     </div>
@@ -297,14 +289,14 @@
             <div
                 class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/50">
                 <div>
-                    <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                    <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2 uppercase tracking-wide">
                         <svg class="w-5 h-5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
-                        5 Peringkat Tertinggi Calon Penerima Bansos
+                        PERINGKAT CALON PENERIMA BANSOS
                     </h3>
-                    <p class="text-xs text-slate-500 mt-0.5">Daftar warga dengan perolehan skor akhir tertinggi.</p>
+                    <p class="text-xs text-slate-500 mt-0.5">Menampilkan calon penerima berdasarkan skor SAW tertinggi.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <a href="{{ route('perhitungan.cetak') }}" target="_blank"
@@ -327,13 +319,13 @@
                     <thead
                         class="text-[11px] text-slate-500 uppercase bg-slate-100/70 border-b border-slate-200 font-bold tracking-wider">
                         <tr>
-                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Peringkat</th>
+                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Rank</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">No. KK</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">NIK</th>
-                            <th class="px-4 py-3.5 whitespace-nowrap">Nama Warga</th>
+                            <th class="px-4 py-3.5 whitespace-nowrap">Nama</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">RT</th>
-                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Skor Akhir</th>
-                            <th class="px-6 py-3.5 text-center whitespace-nowrap">Status Rekomendasi</th>
+                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Skor SAW</th>
+                            <th class="px-6 py-3.5 text-center whitespace-nowrap">Status</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 bg-white">
@@ -403,7 +395,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-10 text-center text-slate-400">
+                                <td colspan="7" class="px-6 py-10 text-center text-slate-400">
                                     Belum ada data warga atau penilaian yang terdaftar di sistem.
                                 </td>
                             </tr>
