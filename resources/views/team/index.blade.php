@@ -169,7 +169,7 @@
                         <p class="text-xs text-slate-500 mt-0.5">Pemangku kepentingan (stakeholder) pengguna sistem yang memvalidasi, mengesahkan, dan mengawasi penyaluran bansos di lapangan.</p>
                     </div>
                     <span class="text-xs font-bold px-3 py-1 bg-slate-100 text-slate-700 rounded-lg border border-slate-200 w-fit">
-                        Lingkup RT 01
+                        Susunan RT 011/RW 04
                     </span>
                 </div>
 
