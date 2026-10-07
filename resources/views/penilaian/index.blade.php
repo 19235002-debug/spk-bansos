@@ -119,9 +119,9 @@
                                                                required>
                                                     </div>
                                                 @elseif($k->kode_kriteria == 'C3')
-                                                    <div class="min-w-[185px] max-w-[210px] mx-auto">
+                                                    <div class="w-[230px] mx-auto">
                                                         <select name="nilai[{{ $alt->id }}][{{ $k->id }}]" 
-                                                                class="w-full text-[11px] py-1.5 ps-2.5 pe-6 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500" 
+                                                                class="w-full text-[11px] py-1.5 ps-2.5 pe-6 font-bold text-slate-800 rounded-lg border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 whitespace-nowrap" 
                                                                 required>
                                                             <option value="1" {{ (int)$currentVal == 1 ? 'selected' : '' }}>1 - Sangat Baik</option>
                                                             <option value="2" {{ (int)$currentVal == 2 ? 'selected' : '' }}>2 - Baik</option>
