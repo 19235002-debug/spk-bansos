@@ -69,6 +69,73 @@
 
                 <!-- Page Main Content -->
                 <main class="flex-1 py-6 px-4 sm:px-6 lg:px-8 max-w-7xl w-full mx-auto">
+                    <!-- Flash Notification Banners (Success, Error, Warning) -->
+                    @if(session('success'))
+                        <div x-data="{ show: true }" x-show="show" x-transition 
+                             class="mb-6 p-4 sm:p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-emerald-950 shadow-sm flex items-start justify-between gap-3">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm sm:text-base text-emerald-950">Berhasil Disimpan!</h4>
+                                    <p class="text-xs sm:text-sm text-emerald-900 mt-0.5 leading-relaxed">{{ session('success') }}</p>
+                                </div>
+                            </div>
+                            <button @click="show = false" type="button" class="text-emerald-700 hover:text-emerald-950 p-1.5 rounded-lg hover:bg-emerald-100 transition shrink-0" title="Tutup">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div x-data="{ show: true }" x-show="show" x-transition 
+                             class="mb-6 p-4 sm:p-5 rounded-2xl bg-rose-50 border-2 border-rose-300 text-rose-950 shadow-sm flex items-start justify-between gap-3">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-rose-600 text-white flex items-center justify-center shrink-0 shadow-xs">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm sm:text-base text-rose-950">Perhatian / Gagal!</h4>
+                                    <p class="text-xs sm:text-sm text-rose-900 mt-0.5 leading-relaxed">{{ session('error') }}</p>
+                                </div>
+                            </div>
+                            <button @click="show = false" type="button" class="text-rose-700 hover:text-rose-950 p-1.5 rounded-lg hover:bg-rose-100 transition shrink-0" title="Tutup">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    @endif
+
+                    @if(session('warning'))
+                        <div x-data="{ show: true }" x-show="show" x-transition 
+                             class="mb-6 p-4 sm:p-5 rounded-2xl bg-amber-50 border-2 border-amber-300 text-amber-950 shadow-sm flex items-start justify-between gap-3">
+                            <div class="flex items-start gap-3">
+                                <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-black text-sm sm:text-base text-amber-950">Pemberitahuan Sistem</h4>
+                                    <p class="text-xs sm:text-sm text-amber-900 mt-0.5 leading-relaxed">{{ session('warning') }}</p>
+                                </div>
+                            </div>
+                            <button @click="show = false" type="button" class="text-amber-700 hover:text-amber-950 p-1.5 rounded-lg hover:bg-amber-100 transition shrink-0" title="Tutup">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    @endif
+
                     {{ $slot }}
                 </main>
 
@@ -82,57 +149,64 @@
         <!-- SweetAlert2 Scripts & Global Notifications -->
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3500,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                });
+                if (typeof Swal !== 'undefined') {
+                    @if(session('success'))
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil Disimpan!',
+                            text: "{{ session('success') }}",
+                            confirmButtonColor: '#4f46e5',
+                            confirmButtonText: 'Selesai &rarr;',
+                            customClass: {
+                                popup: 'rounded-3xl font-sans p-6 shadow-2xl'
+                            }
+                        });
+                    @endif
 
-                @if(session('success'))
-                    Toast.fire({
-                        icon: 'success',
-                        title: "{{ session('success') }}"
-                    });
-                @endif
+                    @if(session('error'))
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Perhatian',
+                            text: "{{ session('error') }}",
+                            confirmButtonColor: '#4f46e5',
+                            confirmButtonText: 'Tutup',
+                            customClass: {
+                                popup: 'rounded-3xl font-sans p-6 shadow-2xl'
+                            }
+                        });
+                    @endif
 
-                @if(session('error'))
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Terjadi Kesalahan',
-                        text: "{{ session('error') }}",
-                        confirmButtonColor: '#4f46e5'
-                    });
-                @endif
+                    @if(session('warning'))
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Peringatan Sistem',
+                            text: "{{ session('warning') }}",
+                            confirmButtonColor: '#4f46e5',
+                            confirmButtonText: 'Tutup',
+                            customClass: {
+                                popup: 'rounded-3xl font-sans p-6 shadow-2xl'
+                            }
+                        });
+                    @endif
 
-                @if(session('warning'))
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Peringatan Sistem',
-                        text: "{{ session('warning') }}",
-                        confirmButtonColor: '#4f46e5'
-                    });
-                @endif
+                    @if($errors->any())
+                        let errorMessages = '<ul class="text-left text-xs space-y-1 mt-2 text-rose-600 font-medium">';
+                        @foreach($errors->all() as $error)
+                            errorMessages += '<li>&bull; {{ $error }}</li>';
+                        @endforeach
+                        errorMessages += '</ul>';
 
-                @if($errors->any())
-                    let errorMessages = '<ul class="text-left text-xs space-y-1 mt-2 text-rose-600 font-medium">';
-                    @foreach($errors->all() as $error)
-                        errorMessages += '<li>&bull; {{ $error }}</li>';
-                    @endforeach
-                    errorMessages += '</ul>';
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Validasi Gagal',
-                        html: 'Silakan periksa kembali inputan Anda:' + errorMessages,
-                        confirmButtonColor: '#4f46e5'
-                    });
-                @endif
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Validasi Gagal',
+                            html: 'Silakan periksa kembali inputan Anda:' + errorMessages,
+                            confirmButtonColor: '#4f46e5',
+                            customClass: {
+                                popup: 'rounded-3xl font-sans p-6 shadow-2xl'
+                            }
+                        });
+                    @endif
+                }
             });
 
             // Global SweetAlert2 Confirm Delete Helper

@@ -34,9 +34,9 @@
                     <span class="font-bold block text-slate-800 group-hover:text-white">Admin RT</span>
                     <span class="text-[10px] text-slate-400 group-hover:text-indigo-100">admin@gmail.com</span>
                 </button>
-                <button type="button" @click="email = 'suparno@gmail.com'; password = 'password'" class="p-2 bg-white hover:bg-indigo-600 hover:text-white border border-indigo-200 rounded-xl text-left transition font-medium group">
-                    <span class="font-bold block text-slate-800 group-hover:text-white">Warga RT (Suparno)</span>
-                    <span class="text-[10px] text-slate-400 group-hover:text-indigo-100">suparno@gmail.com</span>
+                <button type="button" @click="email = 'ridwan@gmail.com'; password = 'password'" class="p-2 bg-white hover:bg-indigo-600 hover:text-white border border-indigo-200 rounded-xl text-left transition font-medium group">
+                    <span class="font-bold block text-slate-800 group-hover:text-white">Warga RT (Pak Ridwan)</span>
+                    <span class="text-[10px] text-slate-400 group-hover:text-indigo-100">ridwan@gmail.com</span>
                 </button>
             </div>
         </div>

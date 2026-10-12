@@ -11,6 +11,7 @@ $widthClass = match ($width) {
     '48' => 'w-48',
     '56' => 'w-56',
     '64' => 'w-64',
+    '72' => 'w-72',
     default => str_starts_with($width, 'w-') ? $width : 'w-' . $width,
 };
 @endphp
@@ -22,15 +23,15 @@ $widthClass = match ($width) {
 
     <div x-show="open"
             x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 scale-95"
-            x-transition:enter-end="opacity-100 scale-100"
-            x-transition:leave="transition ease-in duration-75"
-            x-transition:leave-start="opacity-100 scale-100"
-            x-transition:leave-end="opacity-0 scale-95"
-            class="absolute z-50 mt-2 {{ $widthClass }} rounded-xl shadow-xl {{ $alignmentClasses }}"
+            x-transition:enter-start="opacity-0 translate-y-1 scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+            x-transition:leave="transition ease-in duration-100"
+            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+            x-transition:leave-end="opacity-0 translate-y-1 scale-95"
+            class="absolute z-50 mt-2 {{ $widthClass }} {{ $alignmentClasses }}"
             style="display: none;"
             @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 {{ $contentClasses }}">
+        <div class="rounded-2xl {{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>

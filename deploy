@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+# Script Otomatis Deployment SPK Bansos
+# ==============================================================================
+# Cara Penggunaan:
+# 1. Jalankan di direktori proyek:
+#    ./deploy
+#    atau:
+#    bash deploy
+#
+# 2. Agar bisa diketik 'deploy' langsung di terminal hosting manapun:
+#    Jalankan sekali di terminal hosting:
+#    echo "alias deploy='$(pwd)/deploy'" >> ~/.bashrc && source ~/.bashrc
+# ==============================================================================
+
+set -e
+
+# Warna untuk output terminal
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Berpindah ke direktori script berada
+PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+cd "$PROJECT_DIR" || exit 1
+
+echo -e "${BLUE}======================================================${NC}"
+echo -e "${BLUE}        🚀 MEMULAI PROSES DEPLOYMENT SPK BANSOS       ${NC}"
+echo -e "${BLUE}======================================================${NC}"
+echo -e "Lokasi Proyek: ${YELLOW}$PROJECT_DIR${NC}\n"
+
+# 1. Mengaktifkan mode maintenance
+if [ -f "artisan" ]; then
+    echo -e "${YELLOW}[1/6] Mengaktifkan mode pemeliharaan (Maintenance Mode)...${NC}"
+    php artisan down || true
+else
+    echo -e "${RED}File artisan tidak ditemukan di direktori ini!${NC}"
+    exit 1
+fi
+
+# 2. Menarik pembaruan terbaru dari GitHub
+echo -e "\n${YELLOW}[2/6] Mengambil kode terbaru dari GitHub (origin/main)...${NC}"
+git fetch origin main
+git pull origin main
+
+# 3. Instal dependensi Composer (Production Mode)
+echo -e "\n${YELLOW}[3/6] Memperbarui dependensi PHP (Composer)...${NC}"
+if command -v composer &> /dev/null; then
+    composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+else
+    echo -e "${YELLOW}Perhatian: Composer tidak ditemukan di PATH, melewati composer install...${NC}"
+fi
+
+# 4. Menjalankan migrasi database
+echo -e "\n${YELLOW}[4/6] Menjalankan migrasi database (jika ada)...${NC}"
+php artisan migrate --force
+
+# 5. Membersihkan dan Mengoptimalkan Cache Laravel
+echo -e "\n${YELLOW}[5/6] Mengoptimalkan cache konfigurasi, route, dan view...${NC}"
+php artisan optimize:clear
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# 6. Memastikan izin akses folder storage dan cache
+echo -e "\n${YELLOW}[6/6] Memperbaiki permission folder storage & bootstrap/cache...${NC}"
+chmod -R 775 storage bootstrap/cache 2>/dev/null || true
+
+# Menonaktifkan mode maintenance
+php artisan up
+
+echo -e "\n${GREEN}======================================================${NC}"
+echo -e "${GREEN}   ✅ DEPLOYMENT SELESAI! WEBSITE SUDAH SIAP AKTIF    ${NC}"
+echo -e "${GREEN}======================================================${NC}\n"
