@@ -239,22 +239,22 @@
                             class="relative bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 shadow-xl space-y-5">
 
                             <!-- Widget Header -->
-                            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                                <div class="flex items-center gap-3">
+                            <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                                <div class="flex items-center gap-3 min-w-0">
                                     <div
-                                        class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-600/30">
+                                        class="w-10 h-10 shrink-0 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md shadow-indigo-600/30">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                         </svg>
                                     </div>
-                                    <div>
-                                        <h3 class="font-extrabold text-slate-900 text-base">Cek Status Bansos RT</h3>
-                                        <p class="text-xs text-slate-500">Cek kelayakan instan tanpa perlu login</p>
+                                    <div class="min-w-0">
+                                        <h3 class="font-extrabold text-slate-900 text-base leading-tight">Cek Status Bansos RT</h3>
+                                        <p class="text-xs text-slate-500 leading-tight mt-0.5">Cek kelayakan instan tanpa perlu login</p>
                                     </div>
                                 </div>
                                 <span
-                                    class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200">
+                                    class="shrink-0 px-2.5 py-1 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200 whitespace-nowrap">
                                     Hasil Realtime
                                 </span>
                             </div>
