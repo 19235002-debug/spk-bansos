@@ -7,282 +7,322 @@ use App\Models\Kriteria;
 use App\Models\Warga;
 use App\Models\Penilaian;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
 
 class WargaSeeder extends Seeder
 {
     /**
-     * Seed 25 Alternatif Data Warga (RT 011 / RW 04 Kelurahan Jelambar, Grogol Petamburan).
+     * Seed 25 Alternatif Data Warga (RT 011 / RW 04 Kelurahan Jelambar, Grogol Petamburan)
+     * Sesuai Laporan Proyek Akhir Rekayasa Perangkat Lunak (Tabel 3.2).
      */
     public function run(): void
     {
+        Schema::disableForeignKeyConstraints();
+        Penilaian::truncate();
+        Warga::truncate();
+        Schema::enableForeignKeyConstraints();
+
         $kriteriaModels = Kriteria::all()->keyBy('kode_kriteria');
 
         $wargaData = [
-            // --- TOP 10 PENERIMA UTAMA BANSOS (RANK 1 - 10) ---
+            // A01 - Suparno
             [
-                'user_email' => 'ridwan@gmail.com',
-                'no_kk' => '3173020101010001',
-                'nik' => '3173022304750001',
-                'nama_warga' => 'Pak Ridwan',
+                'user_email' => 'suparno@gmail.com',
+                'no_kk' => '3173010101010001',
+                'nik' => '3173010101700001',
+                'nama_warga' => 'Suparno',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 1, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Buruh Bangunan Harian',
-                'scores' => ['C1' => 750000, 'C2' => 5, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Buruh Harian Lepas',
+                'scores' => ['C1' => 750000, 'C2' => 4, 'C3' => 85, 'C4' => 450],
             ],
+            // A02 - Sumarni
             [
-                'user_email' => 'mutiara@gmail.com',
-                'no_kk' => '3173020101010002',
-                'nik' => '3173025608800002',
-                'nama_warga' => 'Ibu Mutiara',
+                'user_email' => 'sumarni@gmail.com',
+                'no_kk' => '3173010101010002',
+                'nik' => '3173010101700002',
+                'nama_warga' => 'Sumarni',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 2, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pedagang Jamu Gendong (Single Parent)',
-                'scores' => ['C1' => 800000, 'C2' => 5, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Pedagang Jamu Gendong',
+                'scores' => ['C1' => 800000, 'C2' => 4, 'C3' => 90, 'C4' => 450],
             ],
+            // A03 - Maimunah
             [
                 'user_email' => 'maimunah@gmail.com',
-                'no_kk' => '3173020101010003',
-                'nik' => '3173026111780003',
-                'nama_warga' => 'Ibu Maimunah',
+                'no_kk' => '3173010101010003',
+                'nik' => '3173010101700003',
+                'nama_warga' => 'Maimunah',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 3, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pemulung Sampah Plastik',
-                'scores' => ['C1' => 700000, 'C2' => 4, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Buruh Cuci Setrika',
+                'scores' => ['C1' => 650000, 'C2' => 3, 'C3' => 75, 'C4' => 450],
             ],
+            // A04 - Rukmini
             [
-                'user_email' => 'ratna@gmail.com',
-                'no_kk' => '3173020101010004',
-                'nik' => '3173026111780004',
-                'nama_warga' => 'Ibu Ratna',
+                'user_email' => 'rukmini@gmail.com',
+                'no_kk' => '3173010101010004',
+                'nik' => '3173010101700004',
+                'nama_warga' => 'Rukmini',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 4, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Buruh Cuci Harian',
-                'scores' => ['C1' => 900000, 'C2' => 5, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Pedagang Sayur Keliling',
+                'scores' => ['C1' => 700000, 'C2' => 3, 'C3' => 80, 'C4' => 450],
             ],
+            // A05 - Bambang Sutrisno
             [
-                'user_email' => 'fikri@gmail.com',
-                'no_kk' => '3173020101010005',
-                'nik' => '3173021201700005',
-                'nama_warga' => 'Bang Fikri',
+                'user_email' => 'bambang@gmail.com',
+                'no_kk' => '3173010101010005',
+                'nik' => '3173010101700005',
+                'nama_warga' => 'Bambang Sutrisno',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 5, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pengemudi Bajaj / Ojek Pengkolan',
-                'scores' => ['C1' => 950000, 'C2' => 4, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Pekerja Serabutan',
+                'scores' => ['C1' => 900000, 'C2' => 5, 'C3' => 80, 'C4' => 450],
             ],
+            // A06 - Siti Aminah
             [
-                'user_email' => 'rina@gmail.com',
-                'no_kk' => '3173020101010006',
-                'nik' => '3173026111780006',
-                'nama_warga' => 'Ibu Rina',
+                'user_email' => 'sitiaminah@gmail.com',
+                'no_kk' => '3173010101010006',
+                'nik' => '3173010101700006',
+                'nama_warga' => 'Siti Aminah',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 6, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pedagang Gorengan Keliling',
-                'scores' => ['C1' => 1000000, 'C2' => 5, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Buruh Cuci Harian',
+                'scores' => ['C1' => 750000, 'C2' => 3, 'C3' => 85, 'C4' => 450],
             ],
+            // A07 - Dedi Kurniawan
             [
-                'user_email' => 'syahrul@gmail.com',
-                'no_kk' => '3173020101010007',
-                'nik' => '3173021201700007',
-                'nama_warga' => 'Bang Syahrul',
+                'user_email' => 'dedi@gmail.com',
+                'no_kk' => '3173010101010007',
+                'nik' => '3173010101700007',
+                'nama_warga' => 'Dedi Kurniawan',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 7, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Kuli Angkut Pasar',
-                'scores' => ['C1' => 1050000, 'C2' => 4, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Pengemudi Ojek Online',
+                'scores' => ['C1' => 650000, 'C2' => 2, 'C3' => 70, 'C4' => 450],
             ],
+            // A08 - Sri Wahyuni
             [
-                'user_email' => 'syifa@gmail.com',
-                'no_kk' => '3173020101010008',
-                'nik' => '3173026111780008',
-                'nama_warga' => 'Ibu Syifa',
+                'user_email' => 'sriwahyuni@gmail.com',
+                'no_kk' => '3173010101010008',
+                'nik' => '3173010101700008',
+                'nama_warga' => 'Sri Wahyuni',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 8, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Jasa Jahit Pakaian Rumahan',
-                'scores' => ['C1' => 1100000, 'C2' => 4, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Pedagang Gorengan',
+                'scores' => ['C1' => 850000, 'C2' => 4, 'C3' => 75, 'C4' => 450],
             ],
+            // A09 - Agus Santoso
             [
-                'user_email' => 'farhan@gmail.com',
-                'no_kk' => '3173020101010009',
-                'nik' => '3173021201700009',
-                'nama_warga' => 'Pak Farhan',
+                'user_email' => 'agussantoso@gmail.com',
+                'no_kk' => '3173010101010009',
+                'nik' => '3173010101700009',
+                'nama_warga' => 'Agus Santoso',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 9, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Tukang Sol Sepatu',
-                'scores' => ['C1' => 1150000, 'C2' => 3, 'C3' => 5, 'C4' => 450],
+                'pekerjaan' => 'Kuli Bangunan',
+                'scores' => ['C1' => 1000000, 'C2' => 5, 'C3' => 85, 'C4' => 450],
             ],
+            // A10 - Wagiman
             [
-                'user_email' => 'nadia@gmail.com',
-                'no_kk' => '3173020101010010',
-                'nik' => '3173026111780010',
-                'nama_warga' => 'Ibu Nadia',
+                'user_email' => 'wagiman@gmail.com',
+                'no_kk' => '3173010101010010',
+                'nik' => '3173010101700010',
+                'nama_warga' => 'Wagiman',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 10, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Buruh Setrika Harian',
-                'scores' => ['C1' => 1200000, 'C2' => 4, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Lansia / Buruh Tani Kota',
+                'scores' => ['C1' => 700000, 'C2' => 2, 'C3' => 75, 'C4' => 450],
             ],
-
-            // --- 5 PERINGKAT CADANGAN BANSOS (RANK 11 - 15) ---
+            // A11 - Tukiyem
             [
-                'user_email' => 'andre@gmail.com',
-                'no_kk' => '3173020101010011',
-                'nik' => '3173021201700011',
-                'nama_warga' => 'Bang Andre',
+                'user_email' => 'tukiyem@gmail.com',
+                'no_kk' => '3173010101010011',
+                'nik' => '3173010101700011',
+                'nama_warga' => 'Tukiyem',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 11, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pengemudi Ojek Online (Driver Ojol)',
-                'scores' => ['C1' => 1500000, 'C2' => 3, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Pembuat Kerupuk Rumahan',
+                'scores' => ['C1' => 800000, 'C2' => 3, 'C3' => 80, 'C4' => 450],
             ],
+            // A12 - Sugeng Priyanto
             [
-                'user_email' => 'rohaye@gmail.com',
-                'no_kk' => '3173020101010012',
-                'nik' => '3173026111780012',
-                'nama_warga' => 'Ibu Rohaye',
+                'user_email' => 'sugeng@gmail.com',
+                'no_kk' => '3173010101010012',
+                'nik' => '3173010101700012',
+                'nama_warga' => 'Sugeng Priyanto',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 12, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pedagang Warung Kopi / Starling',
-                'scores' => ['C1' => 1600000, 'C2' => 3, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Supir Angkot',
+                'scores' => ['C1' => 950000, 'C2' => 4, 'C3' => 80, 'C4' => 450],
             ],
+            // A13 - Parto Suwito
             [
-                'user_email' => 'reza@gmail.com',
-                'no_kk' => '3173020101010013',
-                'nik' => '3173021201700013',
-                'nama_warga' => 'Bang Reza',
+                'user_email' => 'partosuwito@gmail.com',
+                'no_kk' => '3173010101010013',
+                'nik' => '3173010101700013',
+                'nama_warga' => 'Parto Suwito',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 13, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Tukang Parkir Pasar',
-                'scores' => ['C1' => 1550000, 'C2' => 3, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Tukang Becak / Ojek',
+                'scores' => ['C1' => 750000, 'C2' => 2, 'C3' => 70, 'C4' => 450],
             ],
+            // A14 - Wartini
             [
-                'user_email' => 'melati@gmail.com',
-                'no_kk' => '3173020101010014',
-                'nik' => '3173026111780014',
-                'nama_warga' => 'Ibu Melati',
+                'user_email' => 'wartini@gmail.com',
+                'no_kk' => '3173010101010014',
+                'nik' => '3173010101700014',
+                'nama_warga' => 'Wartini',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 14, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Pembuat Kerupuk Rumahan',
-                'scores' => ['C1' => 1700000, 'C2' => 4, 'C3' => 4, 'C4' => 450],
+                'pekerjaan' => 'Penjual Kue Keliling',
+                'scores' => ['C1' => 850000, 'C2' => 3, 'C3' => 75, 'C4' => 450],
             ],
+            // A15 - Joko Purwanto
             [
-                'user_email' => 'tommy@gmail.com',
-                'no_kk' => '3173020101010015',
-                'nik' => '3173021201700015',
-                'nama_warga' => 'Pak Tommy',
+                'user_email' => 'jokopurwanto@gmail.com',
+                'no_kk' => '3173010101010015',
+                'nik' => '3173010101700015',
+                'nama_warga' => 'Joko Purwanto',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 15, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Tukang Servis Elektronik',
-                'scores' => ['C1' => 1750000, 'C2' => 3, 'C3' => 3, 'C4' => 900],
+                'pekerjaan' => 'Kuli Angkut Pasar',
+                'scores' => ['C1' => 1200000, 'C2' => 6, 'C3' => 80, 'C4' => 450],
             ],
-
-            // --- 10 DATA BELUM LAYAK / TIDAK LULUS (RANK 16 - 25) ---
+            // A16 - Ngatimin
             [
-                'user_email' => 'dimas@gmail.com',
-                'no_kk' => '3173020101010016',
-                'nik' => '3173021201700016',
-                'nama_warga' => 'Pak Dimas',
+                'user_email' => 'ngatimin@gmail.com',
+                'no_kk' => '3173010101010016',
+                'nik' => '3173010101700016',
+                'nama_warga' => 'Ngatimin',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 16, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Tukang Kayu Perabot',
-                'scores' => ['C1' => 2000000, 'C2' => 2, 'C3' => 3, 'C4' => 900],
+                'pekerjaan' => 'Pemulung Barang Bekas',
+                'scores' => ['C1' => 900000, 'C2' => 3, 'C3' => 70, 'C4' => 450],
             ],
+            // A17 - Darmi
             [
-                'user_email' => 'citra@gmail.com',
-                'no_kk' => '3173020101010017',
-                'nik' => '3173026111780017',
-                'nama_warga' => 'Ibu Citra',
+                'user_email' => 'darmi@gmail.com',
+                'no_kk' => '3173010101010017',
+                'nik' => '3173010101700017',
+                'nama_warga' => 'Darmi',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 17, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Penjual Nasi Uduk Betawi',
-                'scores' => ['C1' => 2200000, 'C2' => 3, 'C3' => 3, 'C4' => 900],
+                'pekerjaan' => 'Buruh Jahit Rumahan',
+                'scores' => ['C1' => 800000, 'C2' => 2, 'C3' => 65, 'C4' => 450],
             ],
+            // A18 - Suwandi
             [
-                'user_email' => 'kevin@gmail.com',
-                'no_kk' => '3173020101010018',
-                'nik' => '3173021201700018',
-                'nama_warga' => 'Pak Kevin',
+                'user_email' => 'suwandi@gmail.com',
+                'no_kk' => '3173010101010018',
+                'nik' => '3173010101700018',
+                'nama_warga' => 'Suwandi',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 18, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Supir Angkot Harian',
-                'scores' => ['C1' => 2500000, 'C2' => 2, 'C3' => 3, 'C4' => 900],
+                'pekerjaan' => 'Tukang Sol Sepatu',
+                'scores' => ['C1' => 1100000, 'C2' => 4, 'C3' => 75, 'C4' => 450],
             ],
+            // A19 - Endang Lestari
             [
-                'user_email' => 'amanda@gmail.com',
-                'no_kk' => '3173020101010019',
-                'nik' => '3173026111780019',
-                'nama_warga' => 'Ibu Amanda',
+                'user_email' => 'endanglestari@gmail.com',
+                'no_kk' => '3173010101010019',
+                'nik' => '3173010101700019',
+                'nama_warga' => 'Endang Lestari',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 19, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Penjual Baju Online',
-                'scores' => ['C1' => 2800000, 'C2' => 2, 'C3' => 3, 'C4' => 900],
+                'pekerjaan' => 'Pedagang Kaki Lima',
+                'scores' => ['C1' => 1000000, 'C2' => 3, 'C3' => 70, 'C4' => 450],
             ],
+            // A20 - Paijo
             [
-                'user_email' => 'faisal@gmail.com',
-                'no_kk' => '3173020101010020',
-                'nik' => '3173021201700020',
-                'nama_warga' => 'Pak Faisal',
+                'user_email' => 'paijo@gmail.com',
+                'no_kk' => '3173010101010020',
+                'nik' => '3173010101700020',
+                'nama_warga' => 'Paijo',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 20, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Satpam Kompleks',
-                'scores' => ['C1' => 3000000, 'C2' => 2, 'C3' => 2, 'C4' => 900],
+                'pekerjaan' => 'Tukang Parkir',
+                'scores' => ['C1' => 850000, 'C2' => 2, 'C3' => 60, 'C4' => 450],
             ],
+            // A21 - Karsiman
             [
-                'user_email' => 'randy@gmail.com',
-                'no_kk' => '3173020101010021',
-                'nik' => '3173021905820021',
-                'nama_warga' => 'Bang Randy',
+                'user_email' => 'karsiman@gmail.com',
+                'no_kk' => '3173010101010021',
+                'nik' => '3173010101700021',
+                'nama_warga' => 'Karsiman',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 21, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Karyawan Swasta Garmen',
-                'scores' => ['C1' => 3500000, 'C2' => 2, 'C3' => 2, 'C4' => 1300],
+                'pekerjaan' => 'Montir Bengkel Kecil',
+                'scores' => ['C1' => 1300000, 'C2' => 5, 'C3' => 75, 'C4' => 900],
             ],
+            // A22 - Yatmi
             [
-                'user_email' => 'irfan@gmail.com',
-                'no_kk' => '3173020101010022',
-                'nik' => '3173021201700022',
-                'nama_warga' => 'Pak Irfan',
+                'user_email' => 'yatmi@gmail.com',
+                'no_kk' => '3173010101010022',
+                'nik' => '3173010101700022',
+                'nama_warga' => 'Yatmi',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 22, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Supervisor Minimarket',
-                'scores' => ['C1' => 4000000, 'C2' => 1, 'C3' => 2, 'C4' => 1300],
+                'pekerjaan' => 'Penjual Nasi Uduk',
+                'scores' => ['C1' => 1150000, 'C2' => 3, 'C3' => 65, 'C4' => 900],
             ],
+            // A23 - Hartono
             [
-                'user_email' => 'maya@gmail.com',
-                'no_kk' => '3173020101010023',
-                'nik' => '3173026111780023',
-                'nama_warga' => 'Ibu Maya',
+                'user_email' => 'hartono@gmail.com',
+                'no_kk' => '3173010101010023',
+                'nik' => '3173010101700023',
+                'nama_warga' => 'Hartono',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 23, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Guru Sekolah Dasar',
-                'scores' => ['C1' => 4800000, 'C2' => 1, 'C3' => 2, 'C4' => 1300],
+                'pekerjaan' => 'Tukang Kayu / Mebel',
+                'scores' => ['C1' => 1250000, 'C2' => 3, 'C3' => 60, 'C4' => 900],
             ],
+            // A24 - Sutrisno Hadi
             [
-                'user_email' => 'david@gmail.com',
-                'no_kk' => '3173020101010024',
-                'nik' => '3173021201700024',
-                'nama_warga' => 'Pak David',
+                'user_email' => 'sutrisnohadi@gmail.com',
+                'no_kk' => '3173010101010024',
+                'nik' => '3173010101700024',
+                'nama_warga' => 'Sutrisno Hadi',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 24, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Manager Toko',
-                'scores' => ['C1' => 5200000, 'C2' => 1, 'C3' => 1, 'C4' => 2200],
+                'pekerjaan' => 'Karyawan Toko',
+                'scores' => ['C1' => 1400000, 'C2' => 4, 'C3' => 70, 'C4' => 900],
             ],
+            // A25 - Gunawan
             [
-                'user_email' => 'hendra@gmail.com',
-                'no_kk' => '3173020101010025',
-                'nik' => '3173021201700025',
-                'nama_warga' => 'Pak Hendra',
+                'user_email' => 'gunawan@gmail.com',
+                'no_kk' => '3173010101010025',
+                'nik' => '3173010101700025',
+                'nama_warga' => 'Gunawan',
                 'rt_rw' => 'RT 011/04',
                 'alamat' => 'Jl. Satria X No. 25, RT 011/04, Kel. Jelambar',
-                'pekerjaan' => 'Wiraswasta Toko Sembako',
-                'scores' => ['C1' => 5800000, 'C2' => 1, 'C3' => 1, 'C4' => 2200],
+                'pekerjaan' => 'Satpam Kompleks',
+                'scores' => ['C1' => 1500000, 'C2' => 3, 'C3' => 55, 'C4' => 900],
             ],
         ];
 
         foreach ($wargaData as $altData) {
             $scores = $altData['scores'];
-            $userEmail = $altData['user_email'];
+            $userEmail = $altData['user_email'] ?? null;
             
-            unset($altData['scores'], $altData['user_email']);
+            unset($altData['scores']);
+            if (isset($altData['user_email'])) {
+                unset($altData['user_email']);
+            }
             
-            $user = User::where('email', $userEmail)->first();
-            $altData['user_id'] = $user ? $user->id : null;
+            if ($userEmail) {
+                $user = User::firstOrCreate(
+                    ['email' => $userEmail],
+                    [
+                        'name' => $altData['nama_warga'],
+                        'password' => Hash::make('password'),
+                        'role' => 'warga',
+                    ]
+                );
+                $altData['user_id'] = $user->id;
+            }
 
             $alternatif = Warga::updateOrCreate(
                 ['nik' => $altData['nik']],
