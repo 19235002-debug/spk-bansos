@@ -350,25 +350,22 @@
                                 </div>
 
                                 <!-- Metric Highlights (Bahasa Ramah Warga) -->
-                                <div class="grid grid-cols-2 gap-3" x-show="result && result.rank">
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                                        <span class="text-[10px] font-bold uppercase text-slate-500 block">Peringkat
-                                            Kelayakan</span>
-                                        <span class="text-lg font-black text-indigo-700 block mt-0.5">
+                                <div class="grid grid-cols-3 gap-2" x-show="result && result.rank">
+                                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                                        <span class="text-[10px] font-bold uppercase text-slate-500 block">Peringkat</span>
+                                        <span class="text-base font-black text-indigo-700 block mt-0.5">
                                             #<span x-text="result ? result.rank : '-'"></span>
-                                            <span class="text-xs font-semibold text-slate-500">dari <span
+                                            <span class="text-[10px] font-semibold text-slate-500">/<span
                                                     x-text="result ? result.total_peserta : '-'"></span></span>
                                         </span>
                                     </div>
-                                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-center">
-                                        <span class="text-[10px] font-bold uppercase text-slate-500 block">Status
-                                            Kuota</span>
-                                        <span class="text-sm font-black block mt-1" :class="{
-                                                'text-emerald-700': result && result.status_type === 'lulus',
-                                                'text-amber-700': result && result.status_type === 'cadangan',
-                                                'text-slate-600': result && result.status_type === 'tidak_lulus'
-                                            }"
-                                            x-text="result ? (result.status_type === 'lulus' ? 'Memenuhi Kuota' : (result.status_type === 'cadangan' ? 'Kuota Cadangan' : 'Luar Kuota')) : '-'"></span>
+                                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                                        <span class="text-[10px] font-bold uppercase text-slate-500 block">Kode</span>
+                                        <span class="text-sm font-mono font-black text-indigo-800 block mt-1" x-text="result ? result.kode : '-'"></span>
+                                    </div>
+                                    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-center">
+                                        <span class="text-[10px] font-bold uppercase text-slate-500 block">Skor Vi</span>
+                                        <span class="text-xs font-mono font-black text-slate-900 block mt-1" x-text="result ? result.score : '-'"></span>
                                     </div>
                                 </div>
 

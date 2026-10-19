@@ -320,12 +320,13 @@
                         class="text-[11px] text-slate-500 uppercase bg-slate-100/70 border-b border-slate-200 font-bold tracking-wider">
                         <tr>
                             <th class="px-4 py-3.5 text-center whitespace-nowrap">Rank</th>
+                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Kode</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">No. KK</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">NIK</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">Nama</th>
                             <th class="px-4 py-3.5 whitespace-nowrap">RT</th>
-                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Skor SAW</th>
-                            <th class="px-6 py-3.5 text-center whitespace-nowrap">Status</th>
+                            <th class="px-4 py-3.5 text-center whitespace-nowrap">Skor SAW (Vi)</th>
+                            <th class="px-6 py-3.5 text-center whitespace-nowrap">Status Kelayakan</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 bg-white">
@@ -364,6 +365,9 @@
                                             class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-600 text-white font-black text-xs">#{{ $item['rank'] }}</span>
                                     @endif
                                 </td>
+                                <td class="px-4 py-3.5 text-center font-mono font-bold text-indigo-700 whitespace-nowrap">
+                                    <span class="px-2 py-0.5 bg-indigo-50 border border-indigo-200 rounded">{{ $item['kode'] ?? '-' }}</span>
+                                </td>
                                 <td class="px-4 py-3.5 font-mono font-bold text-indigo-600 whitespace-nowrap">
                                     {{ $item['no_kk'] ?? '-' }}</td>
                                 <td class="px-4 py-3.5 font-mono font-bold text-slate-800 whitespace-nowrap">
@@ -372,30 +376,30 @@
                                     {{ $item['nama_warga'] ?? '-' }}</td>
                                 <td class="px-4 py-3.5 text-slate-600 whitespace-nowrap">{{ $item['rt_rw'] ?? '-' }}</td>
                                 <td class="px-4 py-3.5 text-center font-black text-indigo-600 text-sm whitespace-nowrap">
-                                    {{ number_format($item['score'], 4) }}
+                                    {{ number_format($item['score'], 6) }}
                                 </td>
                                 <td class="px-6 py-3.5 text-center whitespace-nowrap">
                                     @if($item['rank'] <= 10)
                                         <span
                                             class="inline-block px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-extrabold rounded-full border border-emerald-300 whitespace-nowrap">
-                                            Penerima Utama (Lulus)
+                                            {{ $item['status_kelayakan'] ?? 'LOLOS KUOTA UTAMA' }}
                                         </span>
                                     @elseif($item['rank'] <= 15)
                                         <span
                                             class="inline-block px-3 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-full border border-amber-300 whitespace-nowrap">
-                                            Peringkat Cadangan
+                                            {{ $item['status_kelayakan'] ?? 'CADANGAN' }}
                                         </span>
                                     @else
                                         <span
                                             class="inline-block px-3 py-1 bg-slate-100 text-slate-500 text-xs font-medium rounded-full border border-slate-200 whitespace-nowrap">
-                                            Tidak Lulus / Belum Layak
+                                            {{ $item['status_kelayakan'] ?? 'Belum Masuk Kuota Bansos' }}
                                         </span>
                                     @endif
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="px-6 py-10 text-center text-slate-400">
+                                <td colspan="8" class="px-6 py-10 text-center text-slate-400">
                                     Belum ada data warga atau penilaian yang terdaftar di sistem.
                                 </td>
                             </tr>

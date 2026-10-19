@@ -102,7 +102,11 @@
         </div>
 
         <!-- Citizen Information Card (Private Data Only) -->
-        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 grid grid-cols-2 sm:grid-cols-5 gap-4 text-xs">
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 grid grid-cols-2 sm:grid-cols-6 gap-4 text-xs">
+            <div>
+                <span class="text-slate-400 font-bold uppercase text-[10px] block">Kode Warga</span>
+                <span class="font-mono font-bold text-indigo-700 text-sm block mt-0.5">{{ $userRank['kode'] ?? '-' }}</span>
+            </div>
             <div>
                 <span class="text-slate-400 font-bold uppercase text-[10px] block">No. KK (Kartu Keluarga)</span>
                 <span
@@ -136,23 +140,17 @@
                         Status Rekomendasi Bansos
                     </span>
                     <h3 class="text-xl font-black mt-1">
-                        @if($userRank['rank'] <= 10)
-                            LULUS - DIREKOMENDASIKAN PENERIMA UTAMA BANSOS
-                        @elseif($userRank['rank'] <= 15)
-                            CADANGAN - DIUSULKAN DALAM DAFTAR CADANGAN
-                        @else
-                            BELUM LAYAK / TIDAK LULUS SELEKSI
-                        @endif
+                        {{ $userRank['status_kelayakan'] ?? ($userRank['rank'] <= 10 ? 'LOLOS KUOTA UTAMA' : ($userRank['rank'] <= 15 ? 'CADANGAN' : 'BELUM LAYAK')) }}
                     </h3>
                     <p class="text-xs opacity-90">
                         Berdasarkan hasil perhitungan Simple Additive Weighting (SAW), Anda berada pada <strong>Peringkat
-                            ke-{{ $userRank['rank'] }}</strong> dari {{ count($sawData['ranking']) }} calon penerima bansos.
+                            ke-{{ $userRank['rank'] }}</strong> (Kode: <strong>{{ $userRank['kode'] ?? '-' }}</strong>) dari {{ count($sawData['ranking']) }} calon penerima bansos.
                     </p>
                 </div>
                 <div class="text-center shrink-0 px-6 py-3 bg-white rounded-xl border border-slate-200/80 shadow-2xs">
-                    <span class="text-[10px] uppercase font-bold text-slate-400 block">Skor Preferensi</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block">Skor Preferensi (Vi)</span>
                     <span
-                        class="text-2xl font-black font-mono text-indigo-700 block mt-0.5">{{ number_format($userRank['score'], 4) }}</span>
+                        class="text-2xl font-black font-mono text-indigo-700 block mt-0.5">{{ number_format($userRank['score'], 6) }}</span>
                 </div>
             </div>
         @endif
@@ -209,7 +207,7 @@
                                     @endif
                                 </td>
                                 <td class="px-4 py-2.5 text-center font-mono font-bold text-emerald-600">
-                                    {{ number_format($valR, 4) }}
+                                    {{ number_format($valR, 6) }}
                                 </td>
                             </tr>
                         @endforeach

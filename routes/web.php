@@ -79,19 +79,19 @@ Route::get('/cek-nik', function (\Illuminate\Http\Request $request, \App\Service
 
     $rank = $found['rank'];
     $total = count($sawData['ranking']);
-    $score = round($found['score'], 4);
+    $score = $found['score'];
 
     if ($rank <= 10) {
         $statusType = 'lulus';
-        $statusTitle = 'LULUS / PENERIMA UTAMA';
+        $statusTitle = $found['status_kelayakan'] ?? 'LOLOS KUOTA UTAMA';
         $statusDesc = 'Selamat! Data Anda memenuhi kriteria dan masuk dalam kuota utama penerima bansos.';
     } elseif ($rank <= 15) {
         $statusType = 'cadangan';
-        $statusTitle = 'DAFTAR CADANGAN';
+        $statusTitle = $found['status_kelayakan'] ?? 'DAFTAR CADANGAN';
         $statusDesc = 'Data Anda memenuhi syarat dan terdaftar sebagai kandidat cadangan penerima bansos.';
     } else {
         $statusType = 'tidak_lulus';
-        $statusTitle = 'BELUM MEMENUHI KUOTA';
+        $statusTitle = $found['status_kelayakan'] ?? 'BELUM MEMENUHI KUOTA';
         $statusDesc = 'Peringkat seleksi Anda saat ini belum masuk batas kuota penerima periode ini.';
     }
 
@@ -103,13 +103,14 @@ Route::get('/cek-nik', function (\Illuminate\Http\Request $request, \App\Service
     return response()->json([
         'status' => 'success',
         'data' => [
+            'kode' => $found['kode'] ?? '-',
             'nama' => $found['nama_warga'] ?? $found['nama'],
             'nik_masked' => $maskedNik,
             'rt_rw' => $found['rt_rw'] ?? 'RT 011/04',
             'pekerjaan' => $found['pekerjaan'] ?? '-',
             'rank' => $rank,
             'total_peserta' => $total,
-            'score' => number_format($score, 4),
+            'score' => number_format($score, 6),
             'status_type' => $statusType,
             'status_title' => $statusTitle,
             'status_desc' => $statusDesc,

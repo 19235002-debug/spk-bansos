@@ -160,13 +160,14 @@
                 <table class="w-full text-xs text-left">
                     <thead class="bg-slate-100 uppercase text-slate-700 font-bold border-b border-slate-300">
                         <tr>
-                            <th class="p-2.5 text-center border-r border-slate-300 w-16">Rank</th>
+                            <th class="p-2.5 text-center border-r border-slate-300 w-14">Rank</th>
+                            <th class="p-2.5 text-center border-r border-slate-300 w-16">Kode</th>
                             <th class="p-2.5 border-r border-slate-300 w-28">No. KK</th>
                             <th class="p-2.5 border-r border-slate-300 w-28">NIK Kepala Keluarga</th>
                             <th class="p-2.5 border-r border-slate-300">Nama Kepala Keluarga</th>
                             <th class="p-2.5 border-r border-slate-300">RT</th>
-                            <th class="p-2.5 text-center border-r border-slate-300 w-28">Skor Akhir</th>
-                            <th class="p-2.5 text-center w-40">Status Hasil</th>
+                            <th class="p-2.5 text-center border-r border-slate-300 w-28">Skor Akhir (Vi)</th>
+                            <th class="p-2.5 text-center w-48">Status Kelayakan Kuota Bansos</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-200">
@@ -178,6 +179,9 @@
                                         class="inline-flex items-center justify-center w-6 h-6 rounded-full {{ $item['rank'] <= 10 ? 'bg-emerald-600 text-white' : ($item['rank'] <= 15 ? 'bg-amber-500 text-white' : 'bg-slate-200 text-slate-700') }} text-xs font-black">
                                         {{ $item['rank'] }}
                                     </span>
+                                </td>
+                                <td class="p-2.5 font-mono font-bold text-center border-r border-slate-300 text-indigo-700">
+                                    {{ $item['kode'] ?? '-' }}
                                 </td>
                                 <td class="p-2.5 font-mono font-bold border-r border-slate-300 text-indigo-700">
                                     {{ $item['no_kk'] ?? '-' }}
@@ -192,24 +196,24 @@
                                     {{ $item['rt_rw'] ?? $item['prodi'] ?? '-' }}
                                 </td>
                                 <td
-                                    class="p-2.5 text-center font-mono font-bold text-indigo-700 border-r border-slate-300 text-sm">
-                                    {{ number_format($item['score'], 4) }}
+                                    class="p-2.5 text-center font-mono font-bold text-indigo-700 border-r border-slate-300 text-xs">
+                                    {{ number_format($item['score'], 6) }}
                                 </td>
-                                <td class="p-2.5 text-center font-bold">
+                                <td class="p-2.5 text-center font-bold text-xs">
                                     @if($item['rank'] <= 10)
                                         <span
-                                            class="px-2.5 py-1 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold uppercase border border-emerald-300">
-                                            LULUS (Penerima)
+                                            class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-extrabold uppercase border border-emerald-300">
+                                            {{ $item['status_kelayakan'] ?? 'LOLOS KUOTA UTAMA' }}
                                         </span>
                                     @elseif($item['rank'] <= 15)
                                         <span
-                                            class="px-2 py-1 rounded-md bg-amber-100 text-amber-900 text-[10px] font-bold uppercase border border-amber-300">
-                                            CADANGAN
+                                            class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 text-[10px] font-bold uppercase border border-amber-300">
+                                            {{ $item['status_kelayakan'] ?? 'CADANGAN' }}
                                         </span>
                                     @else
                                         <span
-                                            class="px-2 py-1 rounded-md bg-slate-100 text-slate-500 text-[10px] uppercase border border-slate-200">
-                                            BELUM LAYAK
+                                            class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-500 text-[10px] uppercase border border-slate-200">
+                                            {{ $item['status_kelayakan'] ?? 'Belum Masuk Kuota Bansos' }}
                                         </span>
                                     @endif
                                 </td>

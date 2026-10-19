@@ -90,9 +90,8 @@
             <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
                 <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
                     <div>
-                        <h3 class="text-base font-bold text-slate-800">1. Matriks Keputusan Awal & Nilai Pembagi</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Nilai awal kriteria warga sebelum dinormalisasi.
-                        </p>
+                        <h3 class="text-base font-bold text-slate-800">1. Matriks Keputusan Awal (X) & Nilai Pembagi</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Nilai awal kriteria 25 warga sebelum dinormalisasi.</p>
                     </div>
                     <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-lg text-xs font-bold">Langkah 1</span>
                 </div>
@@ -102,6 +101,7 @@
                         <thead class="text-xs text-slate-700 uppercase bg-slate-100/70 border-b border-slate-200 font-bold tracking-wider">
                             <tr>
                                 <th class="px-2 py-3 text-center whitespace-nowrap w-8">No</th>
+                                <th class="px-2 py-3 text-center whitespace-nowrap w-12 font-bold text-indigo-700">Kode</th>
                                 <th class="px-2 py-3 whitespace-nowrap">No. KK</th>
                                 <th class="px-2 py-3 whitespace-nowrap">NIK</th>
                                 <th class="px-2 py-3">Nama Kepala Keluarga</th>
@@ -120,6 +120,9 @@
                             @foreach($sawData['alternatif'] as $index => $alt)
                                 <tr class="hover:bg-slate-50/80 transition">
                                     <td class="px-2 py-2.5 text-center font-semibold text-slate-500 text-xs whitespace-nowrap">{{ $index + 1 }}</td>
+                                    <td class="px-2 py-2.5 text-center font-mono font-bold text-indigo-700 text-xs whitespace-nowrap">
+                                        <span class="px-2 py-0.5 bg-indigo-50 border border-indigo-200 rounded">{{ $alt->kode ?? ('A' . str_pad($index + 1, 2, '0', STR_PAD_LEFT)) }}</span>
+                                    </td>
                                     <td class="px-2 py-2.5 font-mono font-bold text-indigo-600 text-xs whitespace-nowrap">{{ $alt->no_kk ?? '-' }}</td>
                                     <td class="px-2 py-2.5 font-mono font-bold text-slate-800 text-xs whitespace-nowrap">{{ $alt->nik }}</td>
                                     <td class="px-2 py-2.5 font-bold text-slate-800 text-xs">{{ $alt->nama_warga }}</td>
@@ -133,11 +136,9 @@
                                             @elseif($k->kode_kriteria == 'C3')
                                                 <span class="font-bold font-mono">{{ (int)$val }}</span>
                                                 <span class="text-[10px] block text-slate-500 font-sans">
-                                                    @if((int)$val == 1) (Sangat Baik)
-                                                    @elseif((int)$val == 2) (Baik)
-                                                    @elseif((int)$val == 3) (Cukup)
-                                                    @elseif((int)$val == 4) (Memprihatinkan)
-                                                    @elseif((int)$val == 5) (Sangat Memprihatinkan)
+                                                    @if((int)$val >= 85) (Sangat Memprihatinkan)
+                                                    @elseif((int)$val >= 75) (Memprihatinkan)
+                                                    @elseif((int)$val >= 65) (Cukup)
                                                     @else (Skor {{ (int)$val }})
                                                     @endif
                                                 </span>
@@ -153,7 +154,7 @@
                         </tbody>
                         <tfoot class="bg-indigo-50/50 font-bold border-t-2 border-indigo-100">
                             <tr>
-                                <td colspan="4" class="px-2 py-2.5 text-right text-indigo-900 text-xs uppercase whitespace-nowrap">
+                                <td colspan="5" class="px-2 py-2.5 text-right text-indigo-900 text-xs uppercase whitespace-nowrap">
                                     Nilai Pembagi (Max / Min):
                                 </td>
                                 @foreach($sawData['kriteria'] as $k)
@@ -182,8 +183,8 @@
             <div class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
                 <div class="p-6 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
                     <div>
-                        <h3 class="text-base font-bold text-slate-800">2. Matriks Ternormalisasi</h3>
-                        <p class="text-xs text-slate-500 mt-0.5">Hasil transformasi nilai asli ke skala relatif 0 hingga 1.</p>
+                        <h3 class="text-base font-bold text-slate-800">2. Matriks Ternormalisasi (R)</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Hasil transformasi nilai asli ke skala relatif 0 hingga 1 (Presisi 6 desimal).</p>
                     </div>
                     <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-lg text-xs font-bold">Langkah 2</span>
                 </div>
@@ -193,6 +194,7 @@
                         <thead class="text-xs text-slate-700 uppercase bg-slate-100/70 border-b border-slate-200 font-bold tracking-wider">
                             <tr>
                                 <th class="px-2 py-3 text-center whitespace-nowrap w-8">No</th>
+                                <th class="px-2 py-3 text-center whitespace-nowrap w-12 font-bold text-emerald-700">Kode</th>
                                 <th class="px-2 py-3 whitespace-nowrap">No. KK</th>
                                 <th class="px-2 py-3 whitespace-nowrap">NIK</th>
                                 <th class="px-2 py-3">Nama Kepala Keluarga</th>
@@ -209,12 +211,15 @@
                                 <tr class="hover:bg-slate-50/80 transition">
                                     <td class="px-2 py-2.5 text-center font-semibold text-slate-500 font-sans text-xs whitespace-nowrap">
                                         {{ $index + 1 }}</td>
+                                    <td class="px-2 py-2.5 text-center font-mono font-bold text-emerald-800 text-xs whitespace-nowrap">
+                                        <span class="px-2 py-0.5 bg-emerald-50 border border-emerald-200 rounded">{{ $alt->kode ?? ('A' . str_pad($index + 1, 2, '0', STR_PAD_LEFT)) }}</span>
+                                    </td>
                                     <td class="px-2 py-2.5 font-bold text-emerald-700 font-mono text-xs whitespace-nowrap">{{ $alt->no_kk ?? '-' }}</td>
                                     <td class="px-2 py-2.5 font-bold text-slate-800 text-xs whitespace-nowrap">{{ $alt->nik }}</td>
                                     <td class="px-2 py-2.5 font-bold text-slate-800 font-sans text-xs">{{ $alt->nama_warga }}</td>
                                     @foreach($sawData['kriteria'] as $k)
                                         <td class="px-2 py-2.5 text-center font-bold text-emerald-600 text-xs whitespace-nowrap">
-                                            {{ number_format($sawData['matrixR'][$alt->id][$k->id] ?? 0, 4) }}
+                                            {{ number_format($sawData['matrixR'][$alt->id][$k->id] ?? 0, 6) }}
                                         </td>
                                     @endforeach
                                 </tr>
@@ -237,11 +242,9 @@
                             </svg>
                             Hasil Akhir & Perangkingan Bansos
                         </h3>
-                        <p class="text-xs text-slate-600 mt-0.5">Urutan warga berdasarkan skor preferensi dari yang
-                            tertinggi hingga terendah.</p>
+                        <p class="text-xs text-slate-600 mt-0.5">Urutan 25 warga berdasarkan skor preferensi akhir (Vi) dari peringkat 1 hingga 25.</p>
                     </div>
-                    <span class="px-3.5 py-1.5 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-xs">Hasil
-                        Final</span>
+                    <span class="px-3.5 py-1.5 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-xs">Hasil Final Resmi</span>
                 </div>
 
                 <div class="overflow-x-auto">
@@ -249,12 +252,13 @@
                         <thead class="text-xs text-slate-700 uppercase bg-slate-50 border-b border-slate-200 font-bold tracking-wider">
                             <tr>
                                 <th class="ps-4 pe-1 py-3 text-center whitespace-nowrap">Peringkat</th>
+                                <th class="px-2 py-3 text-center whitespace-nowrap">Kode</th>
                                 <th class="px-2 py-3 whitespace-nowrap">No. KK</th>
                                 <th class="px-2 py-3 whitespace-nowrap">NIK</th>
                                 <th class="px-2 py-3">Nama Kepala Keluarga</th>
                                 <th class="px-2 py-3 whitespace-nowrap">RT / RW</th>
-                                <th class="px-2 py-3 text-center whitespace-nowrap">Skor Akhir</th>
-                                <th class="ps-1 pe-4 py-3 text-center whitespace-nowrap">Status Rekomendasi</th>
+                                <th class="px-2 py-3 text-center whitespace-nowrap">Skor Akhir (Vi)</th>
+                                <th class="ps-1 pe-4 py-3 text-center whitespace-nowrap">Status Kelayakan Kuota</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
@@ -297,6 +301,9 @@
                                                 class="inline-flex items-center justify-center w-7 h-7 rounded-full {{ $item['rank'] <= 10 ? 'bg-emerald-600 text-white font-black' : ($item['rank'] <= 15 ? 'bg-amber-500 text-white font-bold' : 'bg-slate-100 text-slate-700 font-bold') }} text-xs">#{{ $item['rank'] }}</span>
                                         @endif
                                     </td>
+                                    <td class="px-2 py-2.5 text-center font-mono font-bold text-indigo-700 text-xs whitespace-nowrap">
+                                        <span class="px-2 py-0.5 bg-indigo-50 border border-indigo-200 rounded">{{ $item['kode'] ?? '-' }}</span>
+                                    </td>
                                     <td class="px-2 py-2.5 font-mono font-bold text-indigo-600 text-xs whitespace-nowrap">{{ $item['no_kk'] ?? '-' }}</td>
                                     <td class="px-2 py-2.5 font-mono font-bold text-slate-800 text-xs whitespace-nowrap">{{ $item['nik'] ?? $item['nim'] ?? '-' }}</td>
                                     <td class="px-2 py-2.5 font-bold text-slate-800 text-xs">
@@ -304,36 +311,36 @@
                                     </td>
                                     <td class="px-2 py-2.5 text-slate-600 text-xs whitespace-nowrap">{{ $item['rt_rw'] ?? $item['prodi'] ?? '-' }}</td>
                                     <td class="px-2 py-2.5 text-center font-mono font-black text-indigo-700 text-xs sm:text-sm whitespace-nowrap">
-                                        {{ number_format($item['score'], 4) }}
+                                        {{ number_format($item['score'], 6) }}
                                     </td>
                                     <td class="ps-1 pe-4 py-2.5 text-center whitespace-nowrap">
                                         @if($item['rank'] <= 10)
                                             <span
-                                                class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-xs font-extrabold rounded-lg border border-emerald-300 inline-flex items-center gap-1 shadow-xs whitespace-nowrap">
+                                                class="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-extrabold rounded-lg border border-emerald-300 inline-flex items-center gap-1 shadow-xs whitespace-nowrap">
                                                 <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                         d="M5 13l4 4L19 7" />
                                                 </svg>
-                                                Penerima (Lulus)
+                                                {{ $item['status_kelayakan'] ?? 'LOLOS KUOTA UTAMA' }}
                                             </span>
                                         @elseif($item['rank'] <= 15)
                                             <span
-                                                class="px-2 py-0.5 bg-amber-100 text-amber-900 text-xs font-bold rounded-lg border border-amber-300 inline-flex items-center gap-1 whitespace-nowrap">
+                                                class="px-2.5 py-1 bg-amber-100 text-amber-900 text-xs font-bold rounded-lg border border-amber-300 inline-flex items-center gap-1 whitespace-nowrap">
                                                 <svg class="w-3.5 h-3.5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0"/></svg>
-                                                Cadangan
+                                                {{ $item['status_kelayakan'] ?? 'CADANGAN' }}
                                             </span>
                                         @else
                                             <span
-                                                class="px-2 py-0.5 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg border border-slate-200 inline-flex items-center gap-1 whitespace-nowrap">
-                                                Belum Layak
+                                                class="px-2.5 py-1 bg-slate-100 text-slate-500 text-xs font-medium rounded-lg border border-slate-200 inline-flex items-center gap-1 whitespace-nowrap">
+                                                {{ $item['status_kelayakan'] ?? 'Belum Masuk Kuota Bansos' }}
                                             </span>
                                         @endif
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="px-6 py-8 text-center text-slate-400">
+                                    <td colspan="8" class="px-6 py-8 text-center text-slate-400">
                                         Belum ada data perhitungan.
                                     </td>
                                 </tr>
